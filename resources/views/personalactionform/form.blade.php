@@ -4,14 +4,22 @@
 @endsection
 @section('content')
 
+<div class="container mt-5">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
 
+        {{ session()->get('success') }}
+
+    </div>
+@endif
     <div class="container mt-5 mb-5">
         <div class="card m-auto border shadow p-3 rounded rounded-4" id="PersonnelActionNoticeForm" style="width: 85%">
             <div class="card-title mt-2 border-bottom text-center" >
                 <h2 class="px-5 py-2" >PERSONNEL ACTION NOTICE</h2>
             </div>
             <div class="card-body px-5 mt-4">
-                <form action="" >
+                <form action="/submit_store_form" method="POST" >
+                    @csrf
                     <div class="row g-2">
                         <h6 class="col-8">Employee Number</h6>
                         <h6 class="col-4">Date Prepared</h6>
@@ -26,7 +34,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2">
+                    
+                     <div class="row g-2">
                         <h6 class="col-8">Employee Name</h6>
                         <h6 class="col-4">Date Hired</h6>
                     </div>
@@ -39,12 +48,14 @@
                                 <input type="text" class="form-control border border-dark shadow-sm" placeholder="Firstname"  name="first_name" required>
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control border border-dark shadow-sm" id="dateHired" name="date_hired">
+                                <input type="date" class="form-control border border-dark shadow-sm"  name="date_hired">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mt-4">
+                    {{-- Position Section  --}}
+
+                   <div class="row mt-4">
                         <div class="col" ><h4 class="bg-light py-3 px-2 rounded">POSITION UPGRADE AND MOVEMENT</h4></div>
                     </div>
                     <div class="row g-2">
@@ -91,7 +102,7 @@
                                 <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="job_level_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_title_to" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_level_to" required>
                             </div>
                         </div>
                     </div>
@@ -235,7 +246,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                     <div class="row mt-4">
                         <div class="col" ><h4 class="bg-light py-3 px-2 rounded">GENERAL REMARKS</h4></div>
                     </div>
                     <div class="row">
@@ -271,14 +282,15 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-12 text-end">
-                            <button class="btn btn-success" id="print">
+                            {{-- <button class="btn btn-success" id="print">
                                 <i class="fas fa-print px-2"></i>Print
-                              </button>
-                            <button class="btn btn-primary">
+                              </button> --}} 
+                              <button type="submit"  class="btn btn-primary">
                                 <i class="fas fa-save px-2"></i> Save
                               </button>
                         </div>
                     </div>
+                    
                 </form>
             </div>    
         </div>

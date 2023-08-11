@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\Position;
-use App\PositionMovement;
+
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -12,10 +11,10 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'employee_number' => 'required|numeric',
+            'employee_number' => 'required',
             'date_prepared' => 'required|date',
             'first_name' => 'required',
-            'last_name' => 'requierd',
+            'last_name' => 'required',
             'date_hired' => 'required|date',
             'radioUpgradePosition' => 'required',
             'radioEffectiveDatePosition' => 'required',
@@ -50,6 +49,7 @@ class EmployeeController extends Controller
             'approval_date' => 'required'
         ]);
 
+
         $employee = Employee::create([
             'employee_number' => $request->employee_number,
             'date_prepared' => $request->date_prepared,
@@ -58,7 +58,9 @@ class EmployeeController extends Controller
             'date_hired' => $request->date_hired
         ]);
 
-        $position = $employee->position()->create([
+        $position = $employee->positionMovements()->create([
+            'reason_for_upgrade' => $request->radioUpgradePosition,
+            'effective_date' => $request->radioEffectiveDatePosition,
             'job_title_from' => $request->job_title_from,
             'job_title_to' => $request->job_title_to,
             'job_level_from' => $request->job_level_from,
@@ -71,18 +73,13 @@ class EmployeeController extends Controller
             'employment_status_to' => $request->employment_status_to,
         ]);
 
-        $positionMovement = $position->positionMovements()->create([
-            'reason_for_upgrade' => $request->radioUpgradePosition,
-            'effective_date' => $request->radioEffectiveDatePosition,
-        ]);
-
         $salaryAdjustment = $employee->salaryAdjustments()->create([
             'reason_for_upgrade' => $request->radioUpgradeSalary,
             'effective_date' => $request->radioEffectiveDateSalary,
             'basic_salary_from' => $request->basic_salary_from,
             'basic_salary_to' => $request->basic_salary_to,
         ]);
-        $additionalCharge = $employee->additionalCharges()->create([
+        $additionalCharge = $employee->benefitAdjustments()->create([
             'reason_for_upgrade' => $request->radioUpgradeCharges,
             'effective_date' => $request->radioEffectiveDateCharges,
             'food_allowance_from' => $request->food_allowance_from,
@@ -95,7 +92,7 @@ class EmployeeController extends Controller
             'birthday_leave_to' => $request->birthday_leave_to,
         ]);
         $generalRemark = $employee->generalRemarks()->create([
-            'remarkable_performance' => $request->input('remarkable-performance'),
+            'remarkable_performance' => $request->input('remarkable_performance'),
             'rooms_for_improvements' => $request->input('rooms_for_improvements'),
         ]);
         $approval = $employee->approvals()->create([
@@ -103,6 +100,7 @@ class EmployeeController extends Controller
             'received' => $request->received,
             'approval_date' => $request->approval_date,
         ]);
-        return redirect()->route('personalactionform.form');
+        session()->flash('success', 'Successfully Submit Personnel Action Form');
+        return redirect('/');
     }
 }

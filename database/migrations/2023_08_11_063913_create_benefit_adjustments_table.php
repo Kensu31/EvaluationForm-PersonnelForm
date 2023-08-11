@@ -13,7 +13,7 @@ class CreateBenefitAdjustmentsTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('reason_for_upgrade');
-            $table->date('effective_date');
+            $table->string('effective_date');
             $table->decimal('food_allowance_from', 10, 2);
             $table->decimal('food_allowance_to', 10, 2);
             $table->decimal('vacation_leave_from', 10, 2);

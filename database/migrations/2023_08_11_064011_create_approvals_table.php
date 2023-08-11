@@ -13,7 +13,7 @@ class CreateApprovalsTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('manager_name');
-            $table->boolean('received');
+            $table->string('received');
             $table->date('approval_date');
             $table->timestamps();
         });

@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('position_movement', function (Blueprint $table) {
+        Schema::create('position_movements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('reason_for_upgrade');
-            $table->date('effective_date');
+            $table->string('effective_date');
             $table->string('job_title_from');
             $table->string('job_title_to');
             $table->string('job_level_from');

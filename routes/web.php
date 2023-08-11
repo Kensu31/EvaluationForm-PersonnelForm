@@ -19,7 +19,8 @@ use function Laravel\Prompts\alert;
 Route::get('/', function () {
     return view('personalactionform.form');
 });
-Route::post('submit_paf', [EmployeeController::class, 'store']);
+Route::post('/submit_store_form', [EmployeeController::class, 'store']);
+
 // Route::get('/1', function () {
 //     return view('index');
 // });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,11 +36,11 @@ class Employee extends Model
 
     public function generalRemarks()
     {
-        return $this->hasOne(GeneralRemark::class);
+        return $this->hasMany(GeneralRemark::class);
     }
 
     public function approvals()
     {
-        return $this->hasOne(Approval::class);
+        return $this->hasMany(Approval::class);
     }
 }
