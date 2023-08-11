@@ -3,296 +3,373 @@
     Personnel Action Form
 @endsection
 @section('content')
+    <div class="container mt-5">
+        @if (session()->has('success'))
+            <div class="alert alert-success">
 
-<div class="container mt-5">
-    @if(session()->has('success'))
-    <div class="alert alert-success">
+                {{ session()->get('success') }}
 
-        {{ session()->get('success') }}
-
-    </div>
-@endif
-    <div class="container mt-5 mb-5">
-        <div class="card m-auto border shadow p-3 rounded rounded-4" id="PersonnelActionNoticeForm" style="width: 85%">
-            <div class="card-title mt-2 border-bottom text-center" >
-                <h2 class="px-5 py-2" >PERSONNEL ACTION NOTICE</h2>
             </div>
-            <div class="card-body px-5 mt-4">
-                <form action="/submit_store_form" method="POST" >
-                    @csrf
-                    <div class="row g-2">
-                        <h6 class="col-8">Employee Number</h6>
-                        <h6 class="col-4">Date Prepared</h6>
-                    </div>
-                    <div class="row g-2 mb-4">
+        @endif
+        <div class="container mt-5 mb-5">
+            <div class="card m-auto border shadow p-3 rounded rounded-4" id="PersonnelActionNoticeForm" style="width: 85%">
+                <div class="card-title mt-2 border-bottom text-center">
+                    <h2 class="px-5 py-2">PERSONNEL ACTION NOTICE</h2>
+                </div>
+                <div class="card-body px-5 mt-4">
+                    <form action="/submit_store_form" method="POST">
+                        @csrf
                         <div class="row g-2">
-                            <div class="col-8">
-                                <input type="text" class="form-control border border-dark shadow-sm"  id="employeeNumber" name="employee_number" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="date" class="form-control border border-dark shadow-sm" id="datePrepared" name="date_prepared">
+                            <h6 class="col-8">Employee Number</h6>
+                            <h6 class="col-4">Date Prepared</h6>
+                        </div>
+                        <div class="row g-2 mb-4">
+                            <div class="row g-2">
+                                <div class="col-8">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        id="employee_number" name="employee_number"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                                </div>
+                                <div class="col-4">
+                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                        id="datePrepared" name="date_prepared">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                     <div class="row g-2">
-                        <h6 class="col-8">Employee Name</h6>
-                        <h6 class="col-4">Date Hired</h6>
-                    </div>
-                    <div class="row g-2">
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Lastname"  name="last_name" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Firstname"  name="first_name" required>
-                            </div>
-                            <div class="col-4">
-                                <input type="date" class="form-control border border-dark shadow-sm"  name="date_hired">
-                            </div>
-                        </div>
-                    </div>
 
-                    {{-- Position Section  --}}
+                        <div class="row g-2">
+                            <h6 class="col-8">Employee Name</h6>
+                            <h6 class="col-4">Date Hired</h6>
+                        </div>
+                        <div class="row g-2">
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="Lastname" id="last_name" name="last_name"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');" required>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="Firstname" id="first_name" name="first_name"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');" required>
+                                </div>
+                                <div class="col-4">
+                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                        name="date_hired">
+                                </div>
+                            </div>
+                        </div>
 
-                   <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">POSITION UPGRADE AND MOVEMENT</h4></div>
-                    </div>
-                    <div class="row g-2">
-                        <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                        <h6 class="col-6 fw-bold">Effective Date:</h6>
-                    </div>
-                    <div class="row g-2">
+                        {{-- Position Section  --}}
+
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h4 class="bg-light py-3 px-2 rounded">POSITION UPGRADE AND MOVEMENT</h4>
+                            </div>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradePosition" value="1">
-                                <label class="form-check-label" >Performance Review</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradePosition" value="1">
-                                <label class="form-check-label" >Promotion</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDatePosition" value="1">
-                                <label class="form-check-label" >Lateral Transfer</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDatePosition" value="1">
-                                <label class="form-check-label" >Others</label>
-                            </div>
+                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-6 fw-bold">Effective Date:</h6>
                         </div>
-                    </div>    
-                    <div class="row g-2 mt-3">
-                        <h6 class="col-2 fw-bold">Result:</h6>
-                        <h6 class="col-10 fw-bold">REGULARIZATION</h6>
-                    </div> 
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-6 fw-bold">Job Title</h6>
-                        <h6 class="col-6 fw-bold">Job Level</h6>
-                    </div>
-                    <div class="row g-2">
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="job_title_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_title_to" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="job_level_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_level_to" required>
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                        value="1">
+                                    <label class="form-check-label">Performance Review</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                        value="1">
+                                    <label class="form-check-label">Promotion</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
+                                        value="1">
+                                    <label class="form-check-label">Lateral Transfer</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
+                                        value="1">
+                                    <label class="form-check-label">Others</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-6 fw-bold">Department</h6>
-                        <h6 class="col-6 fw-bold">Supervisor</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row g-2 mt-3">
+                            <h6 class="col-2 fw-bold">Result:</h6>
+                            <h6 class="col-10 fw-bold">REGULARIZATION</h6>
+                        </div>
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-6 fw-bold">Job Title</h6>
+                            <h6 class="col-6 fw-bold">Job Level</h6>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="department_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="department_to" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="supervisor_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="supervisor_to" required>
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="job_title_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"
+                                        name="job_title_to" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="job_level_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="job_level_to" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-12 fw-bold">Employment Status</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-6 fw-bold">Department</h6>
+                            <h6 class="col-6 fw-bold">Supervisor</h6>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="employment_status_from" required>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="employment_status_to" required>
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="department_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="department_to" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="supervisor_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="supervisor_to" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4></div>
-                    </div>
-                    <div class="row g-2">
-                        <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                        <h6 class="col-6 fw-bold">Effective Date:</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-12 fw-bold">Employment Status</h6>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradeSalary" value="1">
-                                <label class="form-check-label" >Performance Review</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradeSalary" value="1">
-                                <label class="form-check-label" >Promotion</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDateSalary" value="1">
-                                <label class="form-check-label" >Lateral Transfer</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDateSalary" value="1">
-                                <label class="form-check-label" >Others</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        name="employment_status_from" required>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"name="employment_status_to"
+                                        required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-12 fw-bold">Basic Salary</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4>
+                            </div>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="basic_salary_from" required>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="basic_salary_to" required>
-                            </div>
+                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-6 fw-bold">Effective Date:</h6>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4></div>
-                    </div>
-                    <div class="row g-2">
-                        <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                        <h6 class="col-6 fw-bold">Effective Date:</h6>
-                    </div>
-                    <div class="row g-2">
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradeCharges" value="1">
-                                <label class="form-check-label" >Performance Review</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioUpgradeCharges" value="1">
-                                <label class="form-check-label" >Promotion</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDateCharges" value="1">
-                                <label class="form-check-label" >Lateral Transfer</label>
-                            </div>
-                            <div class="col-3">
-                                <input class="form-check-input" type="radio" name="radioEffectiveDateCharges" value="1">
-                                <label class="form-check-label" >Others</label>
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
+                                        value="1">
+                                    <label class="form-check-label">Performance Review</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
+                                        value="1">
+                                    <label class="form-check-label">Promotion</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
+                                        value="1">
+                                    <label class="form-check-label">Lateral Transfer</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
+                                        value="1">
+                                    <label class="form-check-label">Others</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-6 fw-bold">Food Allowance</h6>
-                        <h6 class="col-6 fw-bold">Vacation Leave</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-12 fw-bold">Basic Salary</h6>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="food_allowance_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="food_allowance_to" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="vacation_leave_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="vacation_leave_to" required>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="basic_salary_from" required>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="basic_salary_to" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row g-2 mt-3 text-center">
-                        <h6 class="col-6 fw-bold">Sick Leave</h6>
-                        <h6 class="col-6 fw-bold">Birthday Leave</h6>
-                    </div>
-                    <div class="row g-2">
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4>
+                            </div>
+                        </div>
                         <div class="row g-2">
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="sick_leave_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="sick_leave_to" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="birthday_leave_from" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="birthday_leave_to" required>
-                            </div>
+                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-6 fw-bold">Effective Date:</h6>
                         </div>
-                    </div>
-                     <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">GENERAL REMARKS</h4></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mt-4">
-                            <h6 class="fw-bold text-center">Remarkable Performance:</h6>
-                            <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance"  cols="10" rows="5"></textarea>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <h6 class="fw-bold text-center">Rooms for improvements:</h6>
-                            <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements"  cols="10" rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">APPROVAL</h4></div>
-                    </div>
-                    <div class="row g-2">
-                        <h6 class="col-6 fw-bold">Manager:</h6>
-                        <h6 class="col-3 fw-bold">Received:</h6>
-                        <h6 class="col-3 fw-bold">Date:</h6>
-                    </div>
-                    <div class="row g-2">
                         <div class="row g-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm"   name="manager_name" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm"   name="received" required>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control border border-dark shadow-sm" name="approval_date">
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                        value="1">
+                                    <label class="form-check-label">Performance Review</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                        value="1">
+                                    <label class="form-check-label">Promotion</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
+                                        value="1">
+                                    <label class="form-check-label">Lateral Transfer</label>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
+                                        value="1">
+                                    <label class="form-check-label">Others</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12 text-end">
-                            {{-- <button class="btn btn-success" id="print">
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-6 fw-bold">Food Allowance</h6>
+                            <h6 class="col-6 fw-bold">Vacation Leave</h6>
+                        </div>
+                        <div class="row g-2">
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="food_allowance_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="food_allowance_to" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="vacation_leave_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="vacation_leave_to" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-3 text-center">
+                            <h6 class="col-6 fw-bold">Sick Leave</h6>
+                            <h6 class="col-6 fw-bold">Birthday Leave</h6>
+                        </div>
+                        <div class="row g-2">
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="sick_leave_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="sick_leave_to" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="From" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="birthday_leave_from" required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                                        name="birthday_leave_to" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h4 class="bg-light py-3 px-2 rounded">GENERAL REMARKS</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                                <h6 class="fw-bold text-center">Remarkable Performance:</h6>
+                                <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance" cols="10"
+                                    rows="5"></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <h6 class="fw-bold text-center">Rooms for improvements:</h6>
+                                <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements" cols="10"
+                                    rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h4 class="bg-light py-3 px-2 rounded">APPROVAL</h4>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <h6 class="col-6 fw-bold">Manager:</h6>
+                            <h6 class="col-3 fw-bold">Received:</h6>
+                            <h6 class="col-3 fw-bold">Date:</h6>
+                        </div>
+                        <div class="row g-2">
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        name="manager_name" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        name="received" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '');"
+                                        required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                        name="approval_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 text-end">
+                                {{-- <button class="btn btn-success" id="print">
                                 <i class="fas fa-print px-2"></i>Print
-                              </button> --}} 
-                              <button type="submit"  class="btn btn-primary">
-                                <i class="fas fa-save px-2"></i> Save
-                              </button>
+                              </button> --}}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save px-2"></i> Save
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    
-                </form>
-            </div>    
+
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
