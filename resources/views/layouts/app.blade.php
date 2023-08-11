@@ -14,10 +14,18 @@
         body{
             font-family: Arial, Helvetica, sans-serif
         }
+        @media print{
+            body{
+                font-size: 12px !important;
+            }
+            
+        }
     </style>
 </head>
 <body>
     @yield('content')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </body>
 </html>
