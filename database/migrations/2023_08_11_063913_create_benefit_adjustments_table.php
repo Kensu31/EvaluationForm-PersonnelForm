@@ -14,14 +14,14 @@ class CreateBenefitAdjustmentsTable extends Migration
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('reason_for_upgrade');
             $table->date('effective_date');
-            $table->string('food_allowance_from');
-            $table->string('food_allowance_to');
-            $table->string('vacation_leave_from');
-            $table->string('vacation_leave_to');
-            $table->string('sick_leave_from');
-            $table->string('sick_leave_to');
-            $table->string('birthday_leave_from');
-            $table->string('birthday_leave_to');
+            $table->decimal('food_allowance_from', 10, 2);
+            $table->decimal('food_allowance_to', 10, 2);
+            $table->decimal('vacation_leave_from', 10, 2);
+            $table->decimal('vacation_leave_to', 10, 2);
+            $table->decimal('sick_leave_from', 10, 2);
+            $table->decimal('sick_leave_to', 10, 2);
+            $table->decimal('birthday_leave_from', 10, 2);
+            $table->decimal('birthday_leave_to', 10, 2);
             $table->timestamps();
         });
     }

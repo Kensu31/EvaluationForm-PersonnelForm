@@ -4,14 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegularizationsTable extends Migration
-{
-    public function up()
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        Schema::create('regularizations', function (Blueprint $table) {
+        Schema::create('position_movement', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->string('reason_for_upgrade');
+            $table->date('effective_date');
             $table->string('job_title_from');
             $table->string('job_title_to');
             $table->string('job_level_from');
@@ -26,9 +30,11 @@ class CreateRegularizationsTable extends Migration
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('regularizations');
+        Schema::dropIfExists('position_movement');
     }
-}
-;
+};

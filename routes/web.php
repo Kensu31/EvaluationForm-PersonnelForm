@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvaluationController;
 use Illuminate\Support\Facades\Route;
 use function Laravel\Prompts\alert;
@@ -18,11 +19,12 @@ use function Laravel\Prompts\alert;
 Route::get('/', function () {
     return view('personalactionform.form');
 });
-Route::get('/1', function () {
-    return view('index');
-});
-Route::get('/heelo', function () {
-    alert("Hello");
-});
-Route::get('/display', [EvaluationController::class, 'index']);
-Route::post('submit-form', [EvaluationController::class, 'store']);
+Route::post('submit_paf', [EmployeeController::class, 'store']);
+// Route::get('/1', function () {
+//     return view('index');
+// });
+// Route::get('/heelo', function () {
+//     alert("Hello");
+// });
+// Route::get('/display', [EvaluationController::class, 'index']);
+// Route::post('submit-form', [EvaluationController::class, 'store']);
