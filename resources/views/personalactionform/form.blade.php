@@ -33,10 +33,10 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-4">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Lastname" id="Lastname" name="last_name" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Lastname"  name="last_name" required>
                             </div>
                             <div class="col-4">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Firstname" id="Firstname" name="first_name" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="Firstname"  name="first_name" required>
                             </div>
                             <div class="col-4">
                                 <input type="date" class="form-control border border-dark shadow-sm" id="dateHired" name="date_hired">
@@ -82,16 +82,16 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="job_title_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_title_to" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="job_level_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="job_title_to" required>
                             </div>
                         </div>
                     </div>
@@ -102,16 +102,16 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="department_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="department_to" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="supervisor_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="supervisor_to" required>
                             </div>
                         </div>
                     </div>
@@ -121,10 +121,10 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="employment_status_from" required>
                             </div>
                             <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="employment_status_to" required>
                             </div>
                         </div>
                     </div>
@@ -161,15 +161,15 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="basic_salary_from" required>
                             </div>
                             <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="basic_salary_to" required>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHARGES IN BENIFITS</h4></div>
+                        <div class="col" ><h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4></div>
                     </div>
                     <div class="row g-2">
                         <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
@@ -202,16 +202,16 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="food_allowance_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="food_allowance_to" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="vacation_leave_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="vacation_leave_to" required>
                             </div>
                         </div>
                     </div>
@@ -222,16 +222,16 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="sick_leave_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="sick_leave_to" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From" id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="From"  name="birthday_leave_from" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To" id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"  name="birthday_leave_to" required>
                             </div>
                         </div>
                     </div>
@@ -241,11 +241,11 @@
                     <div class="row">
                         <div class="col-12 mt-4">
                             <h6 class="fw-bold text-center">Remarkable Performance:</h6>
-                            <textarea class="form-control" id="" cols="10" rows="5"></textarea>
+                            <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance"  cols="10" rows="5"></textarea>
                         </div>
                         <div class="col-12 mt-4">
                             <h6 class="fw-bold text-center">Rooms for improvements:</h6>
-                            <textarea class="form-control" id="" cols="10" rows="5"></textarea>
+                            <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements"  cols="10" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -259,13 +259,13 @@
                     <div class="row g-2">
                         <div class="row g-2">
                             <div class="col-6">
-                                <input type="text" class="form-control border border-dark shadow-sm"  id="Lastname" name="lastname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm"   name="manager_name" required>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control border border-dark shadow-sm"  id="Firstname" name="firstname" required>
+                                <input type="text" class="form-control border border-dark shadow-sm"   name="received" required>
                             </div>
                             <div class="col-3">
-                                <input type="date" class="form-control border border-dark shadow-sm" id="dateHired" name="dateHired">
+                                <input type="date" class="form-control border border-dark shadow-sm" name="approval_date">
                             </div>
                         </div>
                     </div>
