@@ -10,8 +10,8 @@ class CreateGeneralRemarksTable extends Migration
     {
         Schema::create('general_remarks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('personnel_form_id');
+            $table->foreign('personnel_form_id')->references('id')->on('personnel_forms')->onDelete('cascade');
             $table->text('remarkable_performance');
             $table->text('rooms_for_improvements');
             $table->timestamps();

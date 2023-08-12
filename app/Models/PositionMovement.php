@@ -21,8 +21,8 @@ class PositionMovement extends Model
         'employment_status_to',
     ];
 
-    public function employee()
+    public function personnelform()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(PersonnelForm::class);
     }
 }

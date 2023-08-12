@@ -11,8 +11,8 @@ class GeneralRemark extends Model
         'rooms_for_improvements',
     ];
 
-    public function employee()
+    public function personnelform()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(PersonnelForm::class);
     }
 }

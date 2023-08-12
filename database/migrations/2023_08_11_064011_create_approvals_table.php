@@ -10,8 +10,8 @@ class CreateApprovalsTable extends Migration
     {
         Schema::create('approvals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('personnel_form_id');
+            $table->foreign('personnel_form_id')->references('id')->on('personnel_forms')->onDelete('cascade');
             $table->string('manager_name');
             $table->string('received');
             $table->date('approval_date');

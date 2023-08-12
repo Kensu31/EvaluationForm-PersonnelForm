@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\PersonnelActionFormController;
 use Illuminate\Support\Facades\Route;
 use function Laravel\Prompts\alert;
 
@@ -17,9 +18,13 @@ use function Laravel\Prompts\alert;
 */
 
 Route::get('/', function () {
-    return view('personalactionform.form');
+    return view('personalactionform.view');
 });
-Route::post('/submit_store_form', [EmployeeController::class, 'store']);
+Route::get('/personnel-form/{id}', [PersonnelActionFormController::class, 'show'])->name('personnel-form.show');
+
+
+Route::post('/submit_store_form', [PersonnelActionFormController::class, 'store']);
+
 
 // Route::get('/1', function () {
 //     return view('index');

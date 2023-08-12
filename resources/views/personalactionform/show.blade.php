@@ -27,12 +27,13 @@
                             <div class="row g-2">
                                 <div class="col-8">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
+                                        id="employee_number" name="employee_number"
+                                        value="{{ $personnelForm->employee_number }}" onkeypress='return onlyDigits(event)'
                                         required>
                                 </div>
                                 <div class="col-4">
                                     <input type="date" class="form-control border border-dark shadow-sm"
-                                        id="datePrepared" name="date_prepared">
+                                        id="datePrepared" value="{{ $personnelForm->date_prepared }}" name="date_prepared">
                                 </div>
                             </div>
                         </div>
@@ -46,16 +47,18 @@
                                 <div class="col-4">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="Lastname" id="last_name" name="last_name"
-                                        onkeypress='return restrictNumbers(event)' required>
+                                        onkeypress='return restrictNumbers(event)' value="{{ $personnelForm->last_name }}"
+                                        required>
                                 </div>
                                 <div class="col-4">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="Firstname" id="first_name" name="first_name"
-                                        onkeypress='return restrictNumbers(event)' required>
+                                        onkeypress='return restrictNumbers(event)' value="{{ $personnelForm->first_name }}"
+                                        required>
                                 </div>
                                 <div class="col-4">
                                     <input type="date" class="form-control border border-dark shadow-sm"
-                                        name="date_hired">
+                                        name="date_hired" value="{{ $personnelForm->date_hired }}">
                                 </div>
                             </div>
                         </div>
@@ -75,22 +78,22 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Performance Review">
+                                        value="Performance Review" @if ($personnelForm->positionMovements->reason_for_upgrade === 'Performance Review') checked @endif>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Promotion">
+                                        value="Promotion" @if ($personnelForm->positionMovements->reason_for_upgrade === 'Promotion') checked @endif>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer" @if ($personnelForm->positionMovements->effective_date === 'Lateral Transfer') checked @endif>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Others">
+                                        value="Others" @if ($personnelForm->positionMovements->effective_date === 'Others') checked @endif>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -107,22 +110,24 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="From" onkeypress='return restrictNumbers(event)' name="job_title_from"
-                                        required>
+                                        placeholder="From" value="{{ $personnelForm->positionMovements->job_title_from }}"
+                                        onkeypress='return restrictNumbers(event)' name="job_title_from" required>
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm" placeholder="To"
+                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                        placeholder="To" value="{{ $personnelForm->positionMovements->job_title_to }}"
                                         name="job_title_to" onkeypress='return restrictNumbers(event)' required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
-                                        name="job_level_from" required>
+                                        name="job_level_from"
+                                        value="{{ $personnelForm->positionMovements->job_level_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="job_level_to"
-                                        required>
+                                        value="{{ $personnelForm->positionMovements->job_level_to }}" required>
                                 </div>
                             </div>
                         </div>
@@ -135,22 +140,24 @@
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
-                                        name="department_from" required>
+                                        name="department_from"
+                                        value="{{ $personnelForm->positionMovements->department_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="department_to"
-                                        required>
+                                        value="{{ $personnelForm->positionMovements->department_to }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
-                                        name="supervisor_from" required>
+                                        name="supervisor_from"
+                                        value="{{ $personnelForm->positionMovements->supervisor_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="supervisor_to"
-                                        required>
+                                        value="{{ $personnelForm->positionMovements->department_to }}" required>
                                 </div>
                             </div>
                         </div>
@@ -162,12 +169,14 @@
                                 <div class="col-6">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
-                                        name="employment_status_from" required>
+                                        name="employment_status_from"
+                                        value="{{ $personnelForm->positionMovements->employment_status_from }}" required>
                                 </div>
                                 <div class="col-6">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return restrictNumbers(event)'
-                                        name="employment_status_to" required>
+                                        name="employment_status_to"
+                                        value="{{ $personnelForm->positionMovements->employment_status_to }}" required>
                                 </div>
                             </div>
                         </div>
@@ -184,22 +193,22 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Performance Review">
+                                        value="Performance Review" @if ($personnelForm->salaryAdjustments->reason_for_upgrade === 'Performance Review') checked @endif>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Promotion">
+                                        value="Promotion" @if ($personnelForm->salaryAdjustments->reason_for_upgrade === 'Promotion') checked @endif>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer" @if ($personnelForm->salaryAdjustments->effective_date === 'Lateral Transfer') checked @endif>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Others">
+                                        value="Others" @if ($personnelForm->salaryAdjustments->effective_date === 'Others') checked @endif>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -211,13 +220,14 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="From" onkeypress='return onlyDigits(event)' name="basic_salary_from"
-                                        required>
+                                        placeholder="From"
+                                        value="{{ $personnelForm->salaryAdjustments->basic_salary_from }}"
+                                        onkeypress='return onlyDigits(event)' name="basic_salary_from" required>
                                 </div>
                                 <div class="col-6">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="basic_salary_to"
-                                        required>
+                                        placeholder="To" value="{{ $personnelForm->salaryAdjustments->basic_salary_to }}"
+                                        onkeypress='return onlyDigits(event)' name="basic_salary_to" required>
                                 </div>
                             </div>
                         </div>
@@ -234,22 +244,23 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Performance Review">
+                                        value="Performance Review" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Performance Review') checked @endif>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
                                         value="Promotion">
-                                    <label class="form-check-label">Promotion</label>
+                                    <label class="form-check-label"
+                                        @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif>Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer" @if ($personnelForm->benefitAdjustments->effective_date === 'Lateral Transfer') checked @endif>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Others">
+                                        value="Others" @if ($personnelForm->benefitAdjustments->effective_date === 'Others') checked @endif>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -263,22 +274,24 @@
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return onlyDigits(event)'
-                                        name="food_allowance_from" required>
+                                        name="food_allowance_from"
+                                        value="{{ $personnelForm->benefitAdjustments->food_allowance_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="food_allowance_to"
-                                        required>
+                                        value="{{ $personnelForm->benefitAdjustments->food_allowance_to }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return onlyDigits(event)'
+                                        value="{{ $personnelForm->benefitAdjustments->vacation_leave_from }}"
                                         name="vacation_leave_from" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="vacation_leave_to"
-                                        required>
+                                        value="{{ $personnelForm->benefitAdjustments->vacation_leave_to }}" required>
                                 </div>
                             </div>
                         </div>
@@ -291,22 +304,24 @@
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return onlyDigits(event)' name="sick_leave_from"
-                                        required>
+                                        value="{{ $personnelForm->benefitAdjustments->sick_leave_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="sick_leave_to"
-                                        required>
+                                        value="{{ $personnelForm->benefitAdjustments->sick_leave_to }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="From" onkeypress='return onlyDigits(event)'
-                                        name="birthday_leave_from" required>
+                                        name="birthday_leave_from"
+                                        value="{{ $personnelForm->benefitAdjustments->birthday_leave_from }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="birthday_leave_to"
-                                        required>
+                                        placeholder="To" onkeypress='return onlyDigits(event)'
+                                        value="{{ $personnelForm->benefitAdjustments->birthday_leave_to }}"
+                                        name="birthday_leave_to" required>
                                 </div>
                             </div>
                         </div>
@@ -319,12 +334,12 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Remarkable Performance:</h6>
                                 <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance" cols="10"
-                                    rows="5"></textarea>
+                                    rows="5">{{ $personnelForm->generalRemarks->remarkable_performance }}</textarea>
                             </div>
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Rooms for improvements:</h6>
                                 <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements" cols="10"
-                                    rows="5"></textarea>
+                                    rows="5">{{ $personnelForm->generalRemarks->rooms_for_improvements }}</textarea>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -341,23 +356,22 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        name="manager_name" onkeypress='return restrictNumbers(event)' required>
+                                        name="manager_name" onkeypress='return restrictNumbers(event)'
+                                        value="{{ $personnelForm->approvals->manager_name }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
-                                        name="received" onkeypress='return restrictNumbers(event)' required>
+                                        name="received" onkeypress='return restrictNumbers(event)'
+                                        value="{{ $personnelForm->approvals->received }}" required>
                                 </div>
                                 <div class="col-3">
                                     <input type="date" class="form-control border border-dark shadow-sm"
-                                        name="approval_date">
+                                        name="approval_date" value="{{ $personnelForm->approvals->approval_date }}">
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 text-end">
-                                {{-- <button class="btn btn-success" id="print">
-                                <i class="fas fa-print px-2"></i>Print
-                              </button> --}}
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-save px-2"></i> Save
                                 </button>

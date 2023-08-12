@@ -13,8 +13,8 @@ class SalaryAdjustment extends Model
         'basic_salary_to',
     ];
 
-    public function employee()
+    public function personnelform()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(PersonnelForm::class);
     }
 }

@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('position_movements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('personnel_form_id');
+            $table->foreign('personnel_form_id')->references('id')->on('personnel_forms')->onDelete('cascade');
             $table->string('reason_for_upgrade');
             $table->string('effective_date');
             $table->string('job_title_from');
@@ -35,6 +35,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('position_movement');
+        Schema::dropIfExists('position_movements');
     }
 };

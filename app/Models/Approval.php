@@ -12,8 +12,8 @@ class Approval extends Model
         'approval_date',
     ];
 
-    public function employee()
+    public function personnelform()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(PersonnelForm::class);
     }
 }

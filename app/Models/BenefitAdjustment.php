@@ -19,8 +19,8 @@ class BenefitAdjustment extends Model
         'birthday_leave_to',
     ];
 
-    public function employee()
+    public function personnelform()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(PersonnelForm::class);
     }
 }

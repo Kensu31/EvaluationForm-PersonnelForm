@@ -10,7 +10,7 @@ class CreateSalaryAdjustmentsTable extends Migration
     {
         Schema::create('salary_adjustments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('personnel_form_id');
             $table->string('reason_for_upgrade');
             $table->string('effective_date');
             $table->decimal('basic_salary_from', 10, 2);
@@ -18,7 +18,7 @@ class CreateSalaryAdjustmentsTable extends Migration
             // Add other columns as needed
             $table->timestamps();
 
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('personnel_form_id')->references('id')->on('personnel_forms')->onDelete('cascade');
         });
     }
 
