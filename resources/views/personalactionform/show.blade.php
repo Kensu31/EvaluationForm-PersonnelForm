@@ -17,7 +17,7 @@
                     <h2 class="px-5 py-2">PERSONNEL ACTION NOTICE</h2>
                 </div>
                 <div class="card-body px-5 mt-4">
-                    <form action="/submit_store_form" method="POST">
+                    <form action="/update-form/{{ $personnelForm->id }}" method="POST">
                         @csrf
                         <div class="row g-2">
                             <h6 class="col-8">Employee Number</h6>
@@ -157,7 +157,7 @@
                                 <div class="col-3">
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="supervisor_to"
-                                        value="{{ $personnelForm->positionMovements->department_to }}" required>
+                                        value="{{ $personnelForm->positionMovements->supervisor_to }}" required>
                                 </div>
                             </div>
                         </div>
@@ -249,9 +249,8 @@
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Promotion">
-                                    <label class="form-check-label"
-                                        @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif>Promotion</label>
+                                        value="Promotion" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif>
+                                    <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
@@ -372,8 +371,8 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 text-end">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save px-2"></i> Save
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save px-2"></i> Update
                                 </button>
                             </div>
                         </div>

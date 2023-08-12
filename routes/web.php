@@ -17,14 +17,12 @@ use function Laravel\Prompts\alert;
 |
 */
 
-Route::get('/', function () {
-    return view('personalactionform.view');
-});
-Route::get('/personnel-form/{id}', [PersonnelActionFormController::class, 'show'])->name('personnel-form.show');
+Route::get('/',[PersonnelActionFormController::class,'index']);
+Route::get('/personnel-form/{id}', [PersonnelActionFormController::class, 'show']);
 
 
 Route::post('/submit_store_form', [PersonnelActionFormController::class, 'store']);
-
+Route::post('/update-form/{id}',[PersonnelActionFormController::class,'update']);
 
 // Route::get('/1', function () {
 //     return view('index');
