@@ -16,8 +16,9 @@
                 <div class="card-title mt-2 border-bottom text-center">
                     <h2 class="px-5 py-2">PERSONNEL ACTION NOTICE</h2>
                 </div>
+                {{-- employee details --}}
                 <div class="card-body px-5 mt-4">
-                    <form action="/submit_store_form" method="POST">
+                    <form action="/submit_store_form" method="POST" >
                         @csrf
                         <div class="row g-2">
                             <h6 class="col-8">Employee Number</h6>
@@ -29,6 +30,7 @@
                                     <input type="text" class="form-control border border-dark shadow-sm"
                                         id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
                                         required>
+                                        
                                 </div>
                                 <div class="col-4">
                                     <input type="date" class="form-control border border-dark shadow-sm"
@@ -59,6 +61,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- employee details --}}
 
                         {{-- Position Section  --}}
 
@@ -171,6 +174,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Position Section  --}}
+
+                        {{-- Salary Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4>
@@ -221,6 +227,8 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Salary Section  --}}
+                        {{-- Benefits Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4>
@@ -310,6 +318,8 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Benefits Section  --}}
+                        {{-- General Remarks  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">GENERAL REMARKS</h4>
@@ -319,14 +329,16 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Remarkable Performance:</h6>
                                 <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance" cols="10"
-                                    rows="5"></textarea>
+                                    rows="5" style="resize: none"></textarea>
                             </div>
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Rooms for improvements:</h6>
                                 <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements" cols="10"
-                                    rows="5"></textarea>
+                                    rows="5" style="resize: none"></textarea>
                             </div>
                         </div>
+                        {{-- General Remarks  --}}
+                        {{-- Approvals  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">APPROVAL</h4>
@@ -358,16 +370,39 @@
                                 {{-- <button class="btn btn-success" id="print">
                                 <i class="fas fa-print px-2"></i>Print
                               </button> --}}
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="btncreate">
                                     <i class="fas fa-save px-2"></i> Save
                                 </button>
                             </div>
                         </div>
-
+                        {{-- Approvals  --}}
                     </form>
+                    <script>
+                        document.getElementById('btncreate').addEventListener('click', function(event) {
+                            event.preventDefault();
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'You are about to create this form.',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, create it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    const form = this.closest('form');
+                                    if (form) {
+                                        form.submit();
+                                    }
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>
+        {{-- script  --}}
         <script>
             function onlyDigits(event) {
                 const charCode = event.charCode || event.keyCode;
@@ -383,4 +418,5 @@
                 }
             }
         </script>
+        {{-- script  --}}
     @endsection

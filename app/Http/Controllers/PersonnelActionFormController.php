@@ -19,6 +19,9 @@ class PersonnelActionFormController extends Controller
         return view('personalactionform.view')->with('personnelForm',$PersonnelForm);
     }
     public function update(Request $request,$id){
+
+
+        
         $request->validate([
             'employee_number' => 'required',
             'date_prepared' => 'required|date',
@@ -58,21 +61,30 @@ class PersonnelActionFormController extends Controller
             'approval_date' => 'required'
         ]);
 
+        
+
         $personnelForm = PersonnelForm::findorFail($id);
-        $positionMovements = PositionMovement::where('personnel_form_id',$personnelForm->id)->first();
-        $salaryAdjustment = SalaryAdjustment::where('personnel_form_id',$personnelForm->id)->first();
-        $benefitsAdjustment = BenefitAdjustment::where('personnel_form_id',$personnelForm->id)->first();
-        $generalRemark = GeneralRemark::where('personnel_form_id',$personnelForm->id)->first();
-        $approval = Approval::where('personnel_form_id',$personnelForm->id)->first();
+
+        if($personnelForm){
+
+            $positionMovements = PositionMovement::where('personnel_form_id',$personnelForm->id)->first();
+            $salaryAdjustment = SalaryAdjustment::where('personnel_form_id',$personnelForm->id)->first();
+            $benefitsAdjustment = BenefitAdjustment::where('personnel_form_id',$personnelForm->id)->first();
+            $generalRemark = GeneralRemark::where('personnel_form_id',$personnelForm->id)->first();
+            $approval = Approval::where('personnel_form_id',$personnelForm->id)->first();
+
+            $personnelForm->update([
+                'employee_number' => $request->employee_number,
+                'date_prepared' => $request->date_prepared,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'date_hired' => $request->date_hired
+            ]);
+        }
+        
 
 
-        $personnelForm->update([
-            'employee_number' => $request->employee_number,
-            'date_prepared' => $request->date_prepared,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'date_hired' => $request->date_hired
-        ]);
+       
         
         if($positionMovements)
         {
@@ -130,9 +142,20 @@ class PersonnelActionFormController extends Controller
                 'approval_date' => $request->approval_date,
             ]);
         }
-        
+        session()->flash('success', 'Successfully Update Personnel Action Form');
+        return redirect('/');
 
     }
+
+    public function delete($id){
+        $personnelForm = PersonnelForm::findOrFail($id);
+        $personnelForm->delete();
+
+        session()->flash('success', 'Successfully Delete Personnel Action Form');
+        return redirect('/');
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([

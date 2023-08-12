@@ -3,6 +3,11 @@
     Personnel Action Form
 @endsection
 @section('content')
+    <style>
+        small {
+            font-size: 12px !important;
+        }
+    </style>
     <div class="container mt-5">
         @if (session()->has('success'))
             <div class="alert alert-success">
@@ -16,6 +21,7 @@
                 <div class="card-title mt-2 border-bottom text-center">
                     <h2 class="px-5 py-2">PERSONNEL ACTION NOTICE</h2>
                 </div>
+                {{-- employee details --}}
                 <div class="card-body px-5 mt-4">
                     <form action="/update-form/{{ $personnelForm->id }}" method="POST">
                         @csrf
@@ -26,14 +32,21 @@
                         <div class="row g-2 mb-4">
                             <div class="row g-2">
                                 <div class="col-8">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        id="employee_number" name="employee_number"
-                                        value="{{ $personnelForm->employee_number }}" onkeypress='return onlyDigits(event)'
-                                        required>
+                                    <input type="text"
+                                        class="form-control border shadow-sm @error('employee_number')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
+                                        id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
+                                        value="{{ old('employee_number', $personnelForm->employee_number) }}" required>
+                                    @error('employee_number')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border border-dark shadow-sm"
-                                        id="datePrepared" value="{{ $personnelForm->date_prepared }}" name="date_prepared">
+                                    <input type="date" class="form-control border shadow-sm" id="datePrepared"
+                                        value="{{ $personnelForm->date_prepared }}" name="date_prepared" required>
                                 </div>
                             </div>
                         </div>
@@ -45,24 +58,40 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-4">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('last_name')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
                                         placeholder="Lastname" id="last_name" name="last_name"
-                                        onkeypress='return restrictNumbers(event)' value="{{ $personnelForm->last_name }}"
-                                        required>
+                                        onkeypress='return restrictNumbers(event)'
+                                        value="{{ old('last_name', $personnelForm->last_name) }}" required>
+                                    @error('last_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('first_name')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
                                         placeholder="Firstname" id="first_name" name="first_name"
-                                        onkeypress='return restrictNumbers(event)' value="{{ $personnelForm->first_name }}"
-                                        required>
+                                        onkeypress='return restrictNumbers(event)'
+                                        value="{{ old('first_name', $personnelForm->first_name) }}" required>
+                                    @error('first_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border border-dark shadow-sm"
-                                        name="date_hired" value="{{ $personnelForm->date_hired }}">
+                                    <input type="date" class="form-control border shadow-sm" name="date_hired"
+                                        value="{{ $personnelForm->date_hired }}">
                                 </div>
                             </div>
                         </div>
-
+                        {{-- employee details --}}
                         {{-- Position Section  --}}
 
                         <div class="row mt-4">
@@ -80,6 +109,9 @@
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
                                         value="Performance Review" @if ($personnelForm->positionMovements->reason_for_upgrade === 'Performance Review') checked @endif>
                                     <label class="form-check-label">Performance Review</label>
+                                    @error('radioUpgradePosition')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
@@ -90,6 +122,9 @@
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
                                         value="Lateral Transfer" @if ($personnelForm->positionMovements->effective_date === 'Lateral Transfer') checked @endif>
                                     <label class="form-check-label">Lateral Transfer</label>
+                                    @error('radioEffectiveDatePosition')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
@@ -109,25 +144,61 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="From" value="{{ $personnelForm->positionMovements->job_title_from }}"
+                                    <input type="text"
+                                        class="form-control border shadow-sm @error('job_title_from')
+                                    border-danger
+                                    @else
+                                        border-dark
+                                @enderror"
+                                        placeholder="From"
+                                        value="{{ old('job_title_from', $personnelForm->positionMovements->job_title_from) }}"
                                         onkeypress='return restrictNumbers(event)' name="job_title_from" required>
+                                    @error('job_title_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="To" value="{{ $personnelForm->positionMovements->job_title_to }}"
+                                    <input type="text"
+                                        class="form-control border shadow-sm @error('job_title_from')
+                                    border-danger
+                                    @else
+                                        border-dark
+                                @enderror"
+                                        placeholder="To"
+                                        value="{{ old('job_title_to', $personnelForm->positionMovements->job_title_to) }}"
                                         name="job_title_to" onkeypress='return restrictNumbers(event)' required>
+                                    @error('job_title_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('job_level_from')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
                                         name="job_level_from"
-                                        value="{{ $personnelForm->positionMovements->job_level_from }}" required>
+                                        value="{{ old('job_level_from', $personnelForm->positionMovements->job_level_from) }}"
+                                        required>
+                                    @error('job_level_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('job_level_to')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="job_level_to"
-                                        value="{{ $personnelForm->positionMovements->job_level_to }}" required>
+                                        value="{{ old('job_level_to', $personnelForm->positionMovements->job_level_to) }}"
+                                        required>
+                                    @error('job_level_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -138,26 +209,62 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('department_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
                                         name="department_from"
-                                        value="{{ $personnelForm->positionMovements->department_from }}" required>
+                                        value="{{ old('department_from', $personnelForm->positionMovements->department_from) }}"
+                                        required>
+                                    @error('department_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('department_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="department_to"
-                                        value="{{ $personnelForm->positionMovements->department_to }}" required>
+                                        value="{{ old('department_to', $personnelForm->positionMovements->department_to) }}"
+                                        required>
+                                    @error('department_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('supervisor_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
                                         name="supervisor_from"
-                                        value="{{ $personnelForm->positionMovements->supervisor_from }}" required>
+                                        value="{{ old('supervisor_from', $personnelForm->positionMovements->supervisor_from) }}"
+                                        required>
+                                    @error('supervisor_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('supervisor_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return restrictNumbers(event)' name="supervisor_to"
-                                        value="{{ $personnelForm->positionMovements->supervisor_to }}" required>
+                                        value="{{ old('supervisor_to', $personnelForm->positionMovements->supervisor_to) }}"
+                                        required>
+                                    @error('supervisor_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -167,19 +274,40 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-6">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('employment_status_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From" onkeypress='return restrictNumbers(event)'
                                         name="employment_status_from"
-                                        value="{{ $personnelForm->positionMovements->employment_status_from }}" required>
+                                        value="{{ old('employment_status_from', $personnelForm->positionMovements->employment_status_from) }}"
+                                        required>
+                                    @error('employment_status_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('employment_status_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return restrictNumbers(event)'
                                         name="employment_status_to"
-                                        value="{{ $personnelForm->positionMovements->employment_status_to }}" required>
+                                        value="{{ old('employment_status_to', $personnelForm->positionMovements->employment_status_to) }}"
+                                        required>
+                                    @error('employment_status_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
+
                             </div>
                         </div>
+                        {{-- Position Section  --}}
+                        {{-- Salary Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4>
@@ -219,18 +347,37 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-6">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('basic_salary_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From"
-                                        value="{{ $personnelForm->salaryAdjustments->basic_salary_from }}"
-                                        onkeypress='return onlyDigits(event)' name="basic_salary_from" required>
+                                        value="{{ old('basic_salary_from', $personnelForm->salaryAdjustments->basic_salary_from) }}"
+                                        onkeypress='return onlyDigits(event)' name="basic_salary_from" required />
+                                    @error('basic_salary_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="To" value="{{ $personnelForm->salaryAdjustments->basic_salary_to }}"
-                                        onkeypress='return onlyDigits(event)' name="basic_salary_to" required>
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('basic_salary_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
+                                        placeholder="To" onkeypress='return onlyDigits(event)' name="basic_salary_to"
+                                        value="{{ old('basic_salary_to', $personnelForm->salaryAdjustments->basic_salary_to) }}"
+                                        required />
+                                    @error('basic_salary_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
+                        {{-- Salary Section  --}}
+                        {{-- Benefits Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4>
@@ -244,22 +391,24 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Performance Review" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Performance Review') checked @endif>
+                                        value="Performance Review" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Performance Review') checked @endif
+                                        required>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Promotion" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif>
+                                        value="Promotion" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif required>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Lateral Transfer" @if ($personnelForm->benefitAdjustments->effective_date === 'Lateral Transfer') checked @endif>
+                                        value="Lateral Transfer" @if ($personnelForm->benefitAdjustments->effective_date === 'Lateral Transfer') checked @endif
+                                        required>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Others" @if ($personnelForm->benefitAdjustments->effective_date === 'Others') checked @endif>
+                                        value="Others" @if ($personnelForm->benefitAdjustments->effective_date === 'Others') checked @endif required>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -271,26 +420,61 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('food_allowance_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From" onkeypress='return onlyDigits(event)'
                                         name="food_allowance_from"
-                                        value="{{ $personnelForm->benefitAdjustments->food_allowance_from }}" required>
+                                        value="{{ old('food_allowance_from', $personnelForm->benefitAdjustments->food_allowance_from) }}"
+                                        required>
+                                    @error('food_allowance_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('food_allowance_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="food_allowance_to"
-                                        value="{{ $personnelForm->benefitAdjustments->food_allowance_to }}" required>
+                                        value="{{ old('food_allowance_to', $personnelForm->benefitAdjustments->food_allowance_to) }}"
+                                        required>
+                                    @error('food_allowance_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('vacation_leave_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="From" onkeypress='return onlyDigits(event)'
-                                        value="{{ $personnelForm->benefitAdjustments->vacation_leave_from }}"
+                                        value="{{ old('vacation_leave_from', $personnelForm->benefitAdjustments->vacation_leave_from) }}"
                                         name="vacation_leave_from" required>
+                                    @error('vacation_leave_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('vacation_leave_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="vacation_leave_to"
-                                        value="{{ $personnelForm->benefitAdjustments->vacation_leave_to }}" required>
+                                        value="{{ old('vacation_leave_to', $personnelForm->benefitAdjustments->vacation_leave_to) }}"
+                                        required>
+                                    @error('vacation_leave_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -301,29 +485,66 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="From" onkeypress='return onlyDigits(event)' name="sick_leave_from"
-                                        value="{{ $personnelForm->benefitAdjustments->sick_leave_from }}" required>
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('sick_leave_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
+                                        placeholder="To" onkeypress='return onlyDigits(event)' name="sick_leave_from"
+                                        value="{{ old('sick_leave_from', $personnelForm->benefitAdjustments->sick_leave_from) }}"
+                                        required>
+                                    @error('sick_leave_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('sick_leave_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         placeholder="To" onkeypress='return onlyDigits(event)' name="sick_leave_to"
-                                        value="{{ $personnelForm->benefitAdjustments->sick_leave_to }}" required>
+                                        value="{{ old('sick_leave_to', $personnelForm->benefitAdjustments->sick_leave_to) }}"
+                                        required>
+                                    @error('sick_leave_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="From" onkeypress='return onlyDigits(event)'
-                                        name="birthday_leave_from"
-                                        value="{{ $personnelForm->benefitAdjustments->birthday_leave_from }}" required>
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('birthday_leave_from')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
+                                        placeholder="To" onkeypress='return onlyDigits(event)' name="birthday_leave_from"
+                                        value="{{ old('birthday_leave_from', $personnelForm->benefitAdjustments->birthday_leave_from) }}"
+                                        required>
+                                    @error('birthday_leave_from')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
-                                        placeholder="To" onkeypress='return onlyDigits(event)'
-                                        value="{{ $personnelForm->benefitAdjustments->birthday_leave_to }}"
-                                        name="birthday_leave_to" required>
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('birthday_leave_to')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
+                                        placeholder="To" onkeypress='return onlyDigits(event)' name="birthday_leave_to"
+                                        value="{{ old('birthday_leave_to', $personnelForm->benefitAdjustments->birthday_leave_to) }}"
+                                        required>
+                                    @error('birthday_leave_to')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
+                        {{-- Benefits Section  --}}
+
+                        {{-- Remarks Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">GENERAL REMARKS</h4>
@@ -332,15 +553,34 @@
                         <div class="row">
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Remarkable Performance:</h6>
-                                <textarea class="form-control border border-dark shadow-sm" name="remarkable_performance" cols="10"
-                                    rows="5">{{ $personnelForm->generalRemarks->remarkable_performance }}</textarea>
+                                <textarea
+                                    class="form-control border shadow-sm  @error('remarkable_performance')
+                                border-danger
+                                @else
+                                border-dark
+                            @enderror"
+                                    name="remarkable_performance" cols="10" rows="5" style="resize: none">{{ old('remarkable_performance', $personnelForm->generalRemarks->remarkable_performance) }}</textarea>
+                                @error('remarkable_performance')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Rooms for improvements:</h6>
-                                <textarea class="form-control border border-dark shadow-sm" name="rooms_for_improvements" cols="10"
-                                    rows="5">{{ $personnelForm->generalRemarks->rooms_for_improvements }}</textarea>
+                                <textarea
+                                    class="form-control border shadow-sm  @error('rooms_for_improvements')
+                                border-danger
+                                @else
+                                border-dark
+                            @enderror"
+                                    name="rooms_for_improvements" cols="10" rows="5" style="resize: none" required>{{ old('rooms_for_improvements', $personnelForm->generalRemarks->rooms_for_improvements) }}</textarea>
+                                @error('rooms_for_improvements')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
+                        {{-- Remarks Section  --}}
+
+                        {{-- Approval Section  --}}
                         <div class="row mt-4">
                             <div class="col">
                                 <h4 class="bg-light py-3 px-2 rounded">APPROVAL</h4>
@@ -354,33 +594,76 @@
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-6">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('manager_name')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         name="manager_name" onkeypress='return restrictNumbers(event)'
-                                        value="{{ $personnelForm->approvals->manager_name }}" required>
+                                        value="{{ old('manager_name', $personnelForm->approvals->manager_name) }}"
+                                        required>
+                                    @error('manager_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control border border-dark shadow-sm"
+                                    <input type="text"
+                                        class="form-control border shadow-sm  @error('received')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
                                         name="received" onkeypress='return restrictNumbers(event)'
-                                        value="{{ $personnelForm->approvals->received }}" required>
+                                        value="{{ old('received', $personnelForm->approvals->received) }}" required>
+                                    @error('received')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
                                     <input type="date" class="form-control border border-dark shadow-sm"
-                                        name="approval_date" value="{{ $personnelForm->approvals->approval_date }}">
+                                        name="approval_date" value="{{ $personnelForm->approvals->approval_date }}"
+                                        required>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-12 text-end">
-                                <button type="submit" class="btn btn-success">
+                                <button type="" class="btn btn-success" id="btnupdate">
                                     <i class="fas fa-save px-2"></i> Update
                                 </button>
                             </div>
                         </div>
-
+                        {{-- Approval Section  --}}
                     </form>
+
+                    <script>
+                        document.getElementById('btnupdate').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'You are about to update this form.',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, update it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    const form = this.closest('form');
+                                    if (form) {
+                                        form.submit();
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+
                 </div>
             </div>
         </div>
+
+        {{-- Script --}}
         <script>
             function onlyDigits(event) {
                 const charCode = event.charCode || event.keyCode;
@@ -396,4 +679,5 @@
                 }
             }
         </script>
+        {{-- Script --}}
     @endsection
