@@ -143,7 +143,7 @@ class PersonnelActionFormController extends Controller
             ]);
         }
         session()->flash('success', 'Successfully Update Personnel Action Form');
-        return redirect('/');
+        return redirect('/view-forms');
 
     }
 
@@ -152,7 +152,7 @@ class PersonnelActionFormController extends Controller
         $personnelForm->delete();
 
         session()->flash('success', 'Successfully Delete Personnel Action Form');
-        return redirect('/');
+        return redirect('/view-forms');
     }
 
 
@@ -249,7 +249,7 @@ class PersonnelActionFormController extends Controller
             'approval_date' => $request->approval_date,
         ]);
         session()->flash('success', 'Successfully Submit Personnel Action Form');
-        return redirect('/');
+        return redirect('/view-forms');
     }
     public function show($id){
         $personnelForm = PersonnelForm::with([

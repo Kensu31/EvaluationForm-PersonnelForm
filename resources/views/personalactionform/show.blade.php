@@ -17,7 +17,7 @@
             </div>
         @endif
         <div class="container mt-5 mb-5">
-            <div class="card m-auto border shadow p-3 rounded rounded-4" id="PersonnelActionNoticeForm" style="width: 85%">
+            <div class="card m-auto border shadow p-3 rounded rounded-4" id="PersonnelActionNoticeForm" style="width: 85%;">
                 <div class="card-title mt-2 border-bottom text-center">
                     <h2 class="px-5 py-2">PERSONNEL ACTION NOTICE</h2>
                 </div>
@@ -45,8 +45,9 @@
                                     @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border shadow-sm" id="datePrepared"
-                                        value="{{ $personnelForm->date_prepared }}" name="date_prepared" required>
+                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                        id="datePrepared" value="{{ $personnelForm->date_prepared }}" name="date_prepared"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +87,8 @@
                                     @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border shadow-sm" name="date_hired"
-                                        value="{{ $personnelForm->date_hired }}">
+                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                        name="date_hired" value="{{ $personnelForm->date_hired }}">
                                 </div>
                             </div>
                         </div>
@@ -353,7 +354,7 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="From"
+                                        placeholder="From ₱ 0"
                                         value="{{ old('basic_salary_from', $personnelForm->salaryAdjustments->basic_salary_from) }}"
                                         onkeypress='return onlyDigits(event)' name="basic_salary_from" required />
                                     @error('basic_salary_from')
@@ -367,7 +368,7 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="basic_salary_to"
+                                        placeholder="To ₱ 0" onkeypress='return onlyDigits(event)' name="basic_salary_to"
                                         value="{{ old('basic_salary_to', $personnelForm->salaryAdjustments->basic_salary_to) }}"
                                         required />
                                     @error('basic_salary_to')
@@ -426,7 +427,7 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="From" onkeypress='return onlyDigits(event)'
+                                        placeholder="From ₱ 0" onkeypress='return onlyDigits(event)'
                                         name="food_allowance_from"
                                         value="{{ old('food_allowance_from', $personnelForm->benefitAdjustments->food_allowance_from) }}"
                                         required>
@@ -441,7 +442,8 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="food_allowance_to"
+                                        placeholder="To ₱ 0" onkeypress='return onlyDigits(event)'
+                                        name="food_allowance_to"
                                         value="{{ old('food_allowance_to', $personnelForm->benefitAdjustments->food_allowance_to) }}"
                                         required>
                                     @error('food_allowance_to')
@@ -455,7 +457,7 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="From" onkeypress='return onlyDigits(event)'
+                                        placeholder="From ₱ 0" onkeypress='return onlyDigits(event)'
                                         value="{{ old('vacation_leave_from', $personnelForm->benefitAdjustments->vacation_leave_from) }}"
                                         name="vacation_leave_from" required>
                                     @error('vacation_leave_from')
@@ -469,7 +471,8 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="vacation_leave_to"
+                                        placeholder="To ₱ 0" onkeypress='return onlyDigits(event)'
+                                        name="vacation_leave_to"
                                         value="{{ old('vacation_leave_to', $personnelForm->benefitAdjustments->vacation_leave_to) }}"
                                         required>
                                     @error('vacation_leave_to')
@@ -491,7 +494,8 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="sick_leave_from"
+                                        placeholder="From ₱ 0" onkeypress='return onlyDigits(event)'
+                                        name="sick_leave_from"
                                         value="{{ old('sick_leave_from', $personnelForm->benefitAdjustments->sick_leave_from) }}"
                                         required>
                                     @error('sick_leave_from')
@@ -505,7 +509,7 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="sick_leave_to"
+                                        placeholder="To ₱ 0" onkeypress='return onlyDigits(event)' name="sick_leave_to"
                                         value="{{ old('sick_leave_to', $personnelForm->benefitAdjustments->sick_leave_to) }}"
                                         required>
                                     @error('sick_leave_to')
@@ -519,7 +523,8 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="birthday_leave_from"
+                                        placeholder="From ₱ 0" onkeypress='return onlyDigits(event)'
+                                        name="birthday_leave_from"
                                         value="{{ old('birthday_leave_from', $personnelForm->benefitAdjustments->birthday_leave_from) }}"
                                         required>
                                     @error('birthday_leave_from')
@@ -533,7 +538,8 @@
                                     @else
                                     border-dark
                                 @enderror"
-                                        placeholder="To" onkeypress='return onlyDigits(event)' name="birthday_leave_to"
+                                        placeholder="To ₱ 0 " onkeypress='return onlyDigits(event)'
+                                        name="birthday_leave_to"
                                         value="{{ old('birthday_leave_to', $personnelForm->benefitAdjustments->birthday_leave_to) }}"
                                         required>
                                     @error('birthday_leave_to')
@@ -632,7 +638,11 @@
                                 <button type="" class="btn btn-success" id="btnupdate">
                                     <i class="fas fa-save px-2"></i> Update
                                 </button>
+                                <button type="" class="btn btn-danger" id="cancel">
+                                    <i class="fas fa-times px-2"></i> Cancel
+                                </button>
                             </div>
+
                         </div>
                         {{-- Approval Section  --}}
                     </form>
@@ -656,6 +666,11 @@
                                     }
                                 }
                             });
+                        });
+                        document.getElementById('cancel').addEventListener('click', function(event) {
+                            event.preventDefault();
+                            window.location.href = '/view-forms';
+
                         });
                     </script>
 

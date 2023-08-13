@@ -16,8 +16,8 @@ use function Laravel\Prompts\alert;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/',[PersonnelActionFormController::class,'index']);
+//personnel action form
+Route::get('/view-forms',[PersonnelActionFormController::class,'index']);
 Route::get('/personnel-form/{id}', [PersonnelActionFormController::class, 'show']);
 Route::get('/delete-form/{id}',[PersonnelActionFormController::class,'delete']);
 Route::get('/add/personnelform',function(){
@@ -27,7 +27,14 @@ Route::get('/add/personnelform',function(){
 Route::post('/submit_store_form', [PersonnelActionFormController::class, 'store']);
 Route::post('/update-form/{id}',[PersonnelActionFormController::class,'update']);
 
+//evaluation form
+Route::get('evaluation/form',function(){
+    return view('evaluationform.form');
+});
+Route::get('',[EvaluationController::class,'index']);
+Route::get('/show-evaluation-form/{id}',[EvaluationController::class,'show']);
 
+Route::post('/submit-evaluation-form',[EvaluationController::class,'store']);
 // Route::get('/1', function () {
 //     return view('index');
 // });

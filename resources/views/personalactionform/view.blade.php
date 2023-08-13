@@ -68,7 +68,11 @@
                                     cancelButtonColor: '#d33',
                                     confirmButtonText: 'Yes, delete it!'
                                 }).then((result) => {
-                                    window.location.href = '/delete-form/' + $id;
+                                    if (result.isConfirmed) {
+                                        window.location.href = '/delete-form/' + $id;
+                                    }
+
+
                                 });
                             }
 
