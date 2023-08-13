@@ -31,15 +31,15 @@ Route::post('/update-form/{id}',[PersonnelActionFormController::class,'update'])
 Route::get('evaluation/form',function(){
     return view('evaluationform.form');
 });
-Route::get('',[EvaluationController::class,'index']);
+Route::get('/view-evaluation-form',[EvaluationController::class,'index']);
 Route::get('/show-evaluation-form/{id}',[EvaluationController::class,'show']);
+Route::get('/delete-evaluation-form/{id}',[EvaluationController::class,'delete']);
 
 Route::post('/submit-evaluation-form',[EvaluationController::class,'store']);
-// Route::get('/1', function () {
-//     return view('index');
-// });
-// Route::get('/heelo', function () {
-//     alert("Hello");
-// });
-// Route::get('/display', [EvaluationController::class, 'index']);
-// Route::post('submit-form', [EvaluationController::class, 'store']);
+Route::get('/generate-pdf',[EvaluationController::class,'print']);
+
+
+//print
+route::get('',function(){
+    return view('evaluationform.pdf');
+});

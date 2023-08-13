@@ -63,21 +63,21 @@
                                 window.location.href = '/show-evaluation-form/' + $id;
                             }
 
-                            // function confirmEdit($id) {
-                            //     return Swal.fire({
-                            //         title: 'Are you sure?',
-                            //         text: 'You are about to edit this form.',
-                            //         icon: 'warning',
-                            //         showCancelButton: true,
-                            //         confirmButtonColor: '#3085d6',
-                            //         cancelButtonColor: '#d33',
-                            //         confirmButtonText: 'Yes, edit it!'
-                            //     }).then((result) => {
-                            //         if (result.isConfirmed) {
-                            //             window.location.href = '/personnel-form/' + $id;
-                            //         }
-                            //     });
-                            // }
+                            function confirmDelete($id) {
+                                return Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: 'You are about to delete this form.',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, Delete it!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = '/delete-evaluation-form/' + $id;
+                                    }
+                                });
+                            }
                         </script>
                     </div>
                 </div>

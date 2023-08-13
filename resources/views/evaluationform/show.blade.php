@@ -513,53 +513,25 @@
                             </div>
                         </div>
                         <div class="text-end">
-                            {{-- <button type="submit" class="btn btn-success fs-6 px-4 py-2  mt-2 shadow"
-                                id="btnsubmitevaluation"> <i class="fas fa-file px-2"></i> Save
-                                evaluation</button> --}}
-                            <button type="" class="btn btn-danger fs-6 px-4 py-2  mt-2 shadow" id="btncancel"> <i
-                                    class="fas fa-times px-2"></i> Cancel</button>
+                            <button type="" class="btn btn-success px-2 py-2  mt-2 shadow" id="btnprint"> <i
+                                    class="fas fa-print px-1" style="font-size:15px"></i> Print</button>
+                            <button type="" class="btn btn-primary fs-6 px-4 py-2  mt-2 shadow" id="btncancel"> <i
+                                    class="fas fa-door-open px-1" style="font-size:15px"></i> Back</button>
                         </div>
                 </form>
             </div>
         </div>
     </div>
-    {{-- <script>
-        document.getElementById('btnsubmitevaluation').addEventListener('click', function(event) {
+    <script>
+        document.getElementById('btnprint').addEventListener('click', function(event) {
             event.preventDefault();
+            window.location.href = '/';
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You are about to create this form.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, create it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const form = this.closest('form');
-                    if (form) {
-                        form.submit();
-                    }
-                }
-            });
         });
         document.getElementById('btncancel').addEventListener('click', function(event) {
             event.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You are about to cancel creating this form.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/';
-                }
-            });
+            window.location.href = '/view-evaluation-form';
 
         });
-    </script> --}}
+    </script>
 @endsection

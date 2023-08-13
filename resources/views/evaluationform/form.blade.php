@@ -29,7 +29,8 @@
                             @else
                             border-dark
                             @enderror"
-                                name="employee_name" value="{{ old('employee_name') }}" />
+                                name="employee_name" value="{{ old('employee_name') }}"
+                                onkeypress="return(restrictNumbers(event))" />
                             @error('employee_name')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -42,7 +43,8 @@
                         @else
                         border-dark
                         @enderror"
-                                name="job_title" value="{{ old('job_title') }}">
+                                name="job_title"
+                                value="{{ old('job_title') }}"onkeypress="return(restrictNumbers(event))" />
                             @error('job_title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -55,7 +57,7 @@
                         @else
                         border-dark
                         @enderror"
-                                name="reviewer" value="{{ old('reviewer') }}">
+                                name="reviewer" value="{{ old('reviewer') }}" onkeypress="return(restrictNumbers(event))" />
                             @error('reviewer')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -489,10 +491,24 @@
                 confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/';
+                    window.location.href = '/view-evaluation-form';
                 }
             });
 
         });
+
+        function onlyDigits(event) {
+            const charCode = event.charCode || event.keyCode;
+            if ((charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 46) {
+                return false;
+            }
+        }
+
+        function restrictNumbers(event) {
+            const charCode = event.which || event.keyCode;
+            if (charCode >= 48 && charCode <= 57) {
+                return false;
+            }
+        }
     </script>
 @endsection

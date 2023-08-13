@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\EmployeeEvaluation;
 use App\Models\EvaluationForm;
 use App\Models\EvaluationFormAnswer;
@@ -21,6 +22,13 @@ class EvaluationController extends Controller
         )->find($id);
 
         return view('evaluationform.show',compact('evaluationForm'));
+    }
+    public function delete($id){
+        $evaluationForm = EvaluationForm::findOrFail($id);
+        $evaluationForm->delete();
+
+        session()->flash('success', 'Successfully Delete Evaluation Form');
+        return redirect('/view-evaluation-form');
     }
     public function store(Request $request)
     {
@@ -78,6 +86,6 @@ class EvaluationController extends Controller
         }
         
         session()->flash('success', 'Successfully Submit Evaluation Form');
-        return redirect('/');
+        return redirect('/view-evaluation-form');
     }
 }

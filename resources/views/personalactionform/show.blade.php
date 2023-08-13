@@ -669,7 +669,20 @@
                         });
                         document.getElementById('cancel').addEventListener('click', function(event) {
                             event.preventDefault();
-                            window.location.href = '/view-forms';
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'You are about to cancel editing this form.',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '/view-forms';
+                                }
+                            });
+
 
                         });
                     </script>
