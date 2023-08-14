@@ -17,30 +17,33 @@
             });
         </script>
     @endif
-    <div class="container">
-        <div class="container mt-5 mb-5">
+    <div class="container-fluid">
+        <div class="container-fuid mt-5 mb-5">
             <div class="card m-auto border shadow p-3 rounded rounded-4">
                 <div class="card-title mt-2 border-bottom">
                     <div class="row">
                         <h2 class="col-6 px-5 py-2">Evaluation Forms</h2>
                         <div class="col-6 text-end">
-                            <a href="/evaluation/form" class="btn btn-success mt-2"><i class="fas fa-plus mx-2"></i>Create
-                                Form</a>
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mt-2"><i
+                                    class="fas fa-plus mx-2"></i>Create
+                                Form</button>
+                            <a href="/generate-blank-form" data-bs-target="#exampleModal" class="btn btn-primary mt-2"><i
+                                    class="fas fa-print mx-2"></i>Print Form</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body px-5 mt-4">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class="table-secondary py-3">
-                                <th class="col-6 py-3">Employee's Name</th>
+                            <thead class="table py-3">
+                                <th class="col-6 py-3">Title</th>
                                 <th class="col-3 py-3">Date Submit</th>
                                 <th class="col-3 py-3 text-center">Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($records as $record)
                                     <tr class="text-middle">
-                                        <td class="col align-middle">{{ $record->employee_name }}
+                                        <td class="col align-middle">Evalaution Form for {{ $record->employee_name }}
                                         </td>
                                         <td class="col align-middle">{{ $record->created_at }}</td>
                                         <td class="col text-center">
@@ -84,4 +87,59 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Employee Evaluation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select id="EmployeeSelect" class="form-select" aria-label="Default select example"
+                        onchange="change(event)" required>
+                        <option disabled selected>Select Employee</option>
+                        @foreach ($employee as $employees)
+                            <option value="{{ $employees->id }}">{{ $employees->last_name }} {{ $employees->last_name }}
+                            </option>
+                        @endforeach
+
+
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="return cancel(event)">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="btnselect" onclick="return select(event)"
+                        disabled>Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function change(event) {
+            var val = this.value;
+            var btnretrieve = document.getElementById('btnselect');
+            if (val == 'Select Employee') {} else {
+                btnretrieve.disabled = false
+            }
+        }
+
+        function cancel(event) {
+            var employeee = document.getElementById('EmployeeSelect');
+            var btnretrieve = document.getElementById('btnselect');
+            btnretrieve.disabled = true;
+            employeee.value = 'Select Employee';
+
+        }
+
+        function select(event) {
+            var employeee = document.getElementById('EmployeeSelect');
+            var btnretrieve = document.getElementById('btnselect');
+
+            var selectedValue = employeee.value;
+
+            window.location.href = "/evaluation/form/" + selectedValue;
+        }
+    </script>
 @endsection

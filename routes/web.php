@@ -28,18 +28,20 @@ Route::post('/submit_store_form', [PersonnelActionFormController::class, 'store'
 Route::post('/update-form/{id}',[PersonnelActionFormController::class,'update']);
 
 //evaluation form
-Route::get('evaluation/form',function(){
-    return view('evaluationform.form');
-});
+Route::get('evaluation/form/{id}',[EvaluationController::class,'create']);
 Route::get('/view-evaluation-form',[EvaluationController::class,'index']);
 Route::get('/show-evaluation-form/{id}',[EvaluationController::class,'show']);
 Route::get('/delete-evaluation-form/{id}',[EvaluationController::class,'delete']);
-
 Route::post('/submit-evaluation-form',[EvaluationController::class,'store']);
-Route::get('/generate-pdf',[EvaluationController::class,'print']);
+Route::get('/generate-print/{id}',[EvaluationController::class,'print']);
 
-
-//print
-route::get('',function(){
-    return view('evaluationform.pdf');
+Route::get('generate-blank-form',function(){
+    return view('evaluationform.evaluationformblank');
 });
+
+
+//employee
+route::get('/1',function(){
+    return view('all_forms');
+});
+route::get('/',[EmployeeController::class,'index']);

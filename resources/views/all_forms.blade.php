@@ -8,7 +8,7 @@
             <div class="card m-auto border shadow p-3 rounded rounded-4">
                 <div class="card-title mt-2 border-bottom">
                     <div class="row">
-                        <h4 class="col-6 px-5 py-2">Employee List</h4>
+                        <h4 class="col-6 px-5 py-2">Forms List</h4>
 
                     </div>
                     {{-- <div class="col-6 text-end">
@@ -20,19 +20,19 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="py-3">
-                                <th class="col-3 py-3">Employee's Name</th>
-                                <th class="col-3 py-3">Postion</th>
-                                <th class="col-3 py-3">Date hired</th>
+                                <th class="col-3 py-3">Form title</th>
+                                <th class="col-3 py-3">Form type</th>
+                                <th class="col-3 py-3">Date Created</th>
                             </thead>
                             <tbody>
-                                @foreach ($employee as $employees)
+                                {{-- @foreach ($employee as $employees)
                                     <tr class="text-middle">
                                         <td class="col align-middle">{{ $employees->last_name }}{{ $employees->first_name }}
                                         </td>
                                         <td class="col align-middle">{{ $employees->position }}</td>
                                         <td class="col align-middle">{{ $employees->date_hired }}</td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>

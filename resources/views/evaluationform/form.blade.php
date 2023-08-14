@@ -29,8 +29,8 @@
                             @else
                             border-dark
                             @enderror"
-                                name="employee_name" value="{{ old('employee_name') }}"
-                                onkeypress="return(restrictNumbers(event))" />
+                                name="employee_name" value="{{ $employeeInfo->last_name }} {{ $employeeInfo->first_name }}"
+                                onkeypress="return(restrictNumbers(event))" readonly />
                             @error('employee_name')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -44,7 +44,7 @@
                         border-dark
                         @enderror"
                                 name="job_title"
-                                value="{{ old('job_title') }}"onkeypress="return(restrictNumbers(event))" />
+                                value="{{ $employeeInfo->position }}"onkeypress="return(restrictNumbers(event))" readonly />
                             @error('job_title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -442,7 +442,7 @@
                         <h4 class="fw-bold">VI. EMPLOYEE COMMENTS(OPTIONAL)</h4>
                         <div class="container">
                             <div class="mb-3">
-                                <label for="exampleTextarea" class="form-label">Comment</label>
+                                <label for="exampleTextarea" class="form-label">Comments</label>
                                 <textarea class="form-control border border-dark shadow-sm" name="Comments" placeholder="Enter comment here"
                                     rows="5" style="resize:none"></textarea>
                             </div>

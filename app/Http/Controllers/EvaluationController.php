@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Employee;
 use App\Models\EmployeeEvaluation;
 use App\Models\EvaluationForm;
 use App\Models\EvaluationFormAnswer;
@@ -14,7 +15,12 @@ class EvaluationController extends Controller
     public function index()
     {
         $records = EvaluationForm::all();
-        return view('/evaluationform.view')->with('records', $records);
+        $employee = Employee::all();
+        return view('/evaluationform.view')->with('records', $records)->with('employee',$employee);
+    }
+    public function create($id){
+        $employeeInfo = Employee::findOrFail($id);
+        return view('evaluationform.form',compact('employeeInfo'));
     }
     public function show($id){
         $evaluationForm = EvaluationForm::with(
@@ -87,5 +93,12 @@ class EvaluationController extends Controller
         
         session()->flash('success', 'Successfully Submit Evaluation Form');
         return redirect('/view-evaluation-form');
+    }
+    public function print($id){
+        $evaluationForm = EvaluationForm::with(
+            'evaluationFormAnswer'
+        )->find($id);
+
+        return view('evaluationform.pdf',compact('evaluationForm'));
     }
 }

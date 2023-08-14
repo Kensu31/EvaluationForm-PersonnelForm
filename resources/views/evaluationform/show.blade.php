@@ -507,14 +507,15 @@
                         <h4 class="fw-bold">VI. EMPLOYEE COMMENTS(OPTIONAL)</h4>
                         <div class="container">
                             <div class="mb-3">
-                                <label for="exampleTextarea" class="form-label">Comment</label>
+                                <label for="exampleTextarea" class="form-label">Comments</label>
                                 <textarea class="form-control border border-dark shadow-sm" name="Comments" placeholder="Enter comment here"
-                                    rows="5" style="resize:none" readonly>{{ $evaluationForm->evaluationFormAnswer->Performance }}</textarea>
+                                    rows="5" style="resize:none" readonly>{{ $evaluationForm->evaluationFormAnswer->Comments }}</textarea>
                             </div>
                         </div>
                         <div class="text-end">
-                            <button type="" class="btn btn-success px-2 py-2  mt-2 shadow" id="btnprint"> <i
-                                    class="fas fa-print px-1" style="font-size:15px"></i> Print</button>
+                            <a href="/generate-print/{{ $evaluationForm->id }}" target="_blank"
+                                class="btn btn-success px-2 py-2  mt-2 shadow" id="btnprint"> <i
+                                    class="fas fa-print px-1" style="font-size:15px"></i> Print</a>
                             <button type="" class="btn btn-primary fs-6 px-4 py-2  mt-2 shadow" id="btncancel"> <i
                                     class="fas fa-door-open px-1" style="font-size:15px"></i> Back</button>
                         </div>
@@ -523,11 +524,6 @@
         </div>
     </div>
     <script>
-        document.getElementById('btnprint').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = '/';
-
-        });
         document.getElementById('btncancel').addEventListener('click', function(event) {
             event.preventDefault();
             window.location.href = '/view-evaluation-form';

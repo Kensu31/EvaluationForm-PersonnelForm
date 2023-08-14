@@ -3,12 +3,6 @@
     Print
 @endsection
 @section('content')
-    <style>
-        input[type='radio'] {
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-    </style>
     <div class="container-fluid align-middle">
         <div class="container-fluid">
             <img src="https://dummyimage.com/50x50/000/fff" class="col img-thumbnail" alt="" width="">
@@ -21,13 +15,13 @@
                     <p> <strong> Employee's Name:</strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->employee_name }}</span>
+
                 </div>
                 <div class="col-3 text-end">
                     <p> <strong> Job Title: </strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->job_title }}</span>
+
                 </div>
             </div>
             <div class="row container m-auto">
@@ -35,13 +29,13 @@
                     <p> <strong> Supervisor/Reviewer:</strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->reviewer }}</span>
+
                 </div>
                 <div class="col-3 text-end">
                     <p> <strong> Review Period: </strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->review_period }}</span>
+
                 </div>
             </div>
         </div>
@@ -65,23 +59,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Quality_Work" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Quality_Work == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Quality_Work" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Quality_Work" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Quality_Work == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Quality_Work" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Quality_Work" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Quality_Work == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Quality_Work" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Quality_Work" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Quality_Work == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Quality_Work" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -98,23 +88,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Attendance_Punctuality == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Attendance_Punctuality == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Attendance_Punctuality == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Attendance_Punctuality == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Attendance_Punctuality" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -133,23 +119,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Reliability" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Reliability == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Reliability" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Reliability" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Reliability == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Reliability" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Reliability" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Reliability == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Reliability" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Reliability" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Reliability == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Reliability" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -166,23 +148,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Communication" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Communication == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Communication" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Communication" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Communication == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Communication" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Communication" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Communication == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Communication" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Communication" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Communication == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Communication" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -199,23 +177,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Judgment" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Judgment == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Judgment" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Judgment" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Judgment == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Judgment" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Judgment" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Judgment == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Judgment" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Judgment" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Judgment == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Judgment" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -233,23 +207,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Initiative" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Initiative == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Initiative" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Initiative" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Initiative == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Initiative" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Initiative" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Initiative == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Initiative" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Initiative" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Initiative == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Initiative" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -265,23 +235,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Knowledge == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Knowledge" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Knowledge == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Knowledge" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Knowledge == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Knowledge" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Knowledge == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Knowledge" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -298,23 +264,19 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Training" value="4"
-                                    @if ($evaluationForm->evaluationFormAnswer->Training == 4) checked @endif>
+                                <input class="form-check-input" type="radio" name="Training" value="4">
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Training" value="3"
-                                    @if ($evaluationForm->evaluationFormAnswer->Training == 3) checked @endif>
+                                <input class="form-check-input" type="radio" name="Training" value="3">
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Training" value="2"
-                                    @if ($evaluationForm->evaluationFormAnswer->Training == 2) checked @endif>
+                                <input class="form-check-input" type="radio" name="Training" value="2">
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Training" value="1"
-                                    @if ($evaluationForm->evaluationFormAnswer->Training == 1) checked @endif>
+                                <input class="form-check-input" type="radio" name="Training" value="1">
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
@@ -333,7 +295,7 @@
                         @else
                         border-dark
                         @enderror"
-                            name="Performance" readonly rows="5" style="resize: none">{{ $evaluationForm->evaluationFormAnswer->Performance }}</textarea>
+                            name="Performance" rows="5" style="resize: none"></textarea>
                         @error('Performance')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -345,8 +307,7 @@
                 <div class="container">
                     <div class="mb-3">
                         <label for="exampleTextarea" class="form-label">Comments</label>
-                        <textarea class="form-control border border-dark shadow-sm" readonly name="Comments" rows="5"
-                            style="resize:none">{{ $evaluationForm->evaluationFormAnswer->Comments }}</textarea>
+                        <textarea class="form-control border border-dark shadow-sm" name="Comments" rows="5" style="resize:none"></textarea>
                     </div>
                 </div>
             </div>
