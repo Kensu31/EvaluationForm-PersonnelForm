@@ -23,7 +23,7 @@
                 </div>
                 {{-- employee details --}}
                 <div class="card-body px-5 mt-4">
-                    <form action="/submit_store_form" method="POST">
+                    <form action="/submit-store-form" method="POST">
                         @csrf
                         <div class="row g-2">
                             <h6 class="col-8">Employee Number</h6>
@@ -39,7 +39,7 @@
                                         border-dark
                                     @enderror"
                                         id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
-                                        value="{{ old('employee_number') }}" required>
+                                        value="{{ $employeeInfo->id }}" required readonly>
                                     @error('employee_number')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -51,7 +51,7 @@
                                     @else
                                     border-dark
                                     @enderror"
-                                        id="datePrepared" name="date_prepared">
+                                        id="datePrepared" name="date_prepared" value="{{ old('date_prepared') }}">
                                     @error('date_prepared')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -73,7 +73,8 @@
                                         border-dark
                                     @enderror"
                                         placeholder="Lastname" id="last_name" name="last_name"
-                                        onkeypress='return restrictNumbers(event)' value="{{ old('last_name') }}" required>
+                                        onkeypress='return restrictNumbers(event)' value="{{ $employeeInfo->last_name }}"
+                                        required readonly>
                                     @error('last_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -86,7 +87,8 @@
                                         border-dark
                                     @enderror"
                                         placeholder="Firstname" id="first_name" name="first_name"
-                                        onkeypress='return restrictNumbers(event)' value="{{ old('first_name') }}" required>
+                                        onkeypress='return restrictNumbers(event)' value="{{ $employeeInfo->first_name }}"
+                                        required readonly>
                                     @error('first_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -98,7 +100,7 @@
                                     @else
                                     border-dark
                                     @enderror"
-                                        name="date_hired">
+                                        name="date_hired" value="{{ $employeeInfo->date_hired }}" readonly>
                                     @error('date_hired')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -122,22 +124,25 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Performance Review">
+                                        value="Performance Review"
+                                        {{ old('radioUpgradePosition') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
 
                                 </div>
 
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Promotion">
+                                        value="Promotion"
+                                        {{ old('radioUpgradePosition') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer"
+                                        {{ old('radioEffectiveDatePosition') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3" {{ old('radioEffectiveDatePosition') == 'Others' ? 'checked' : '' }}>
                                     <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
                                         value="Others">
                                     <label class="form-check-label">Others</label>
@@ -177,7 +182,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('job_title_from')
+                                        class="form-control border shadow-sm @error('job_title_to')
                                     border-danger
                                     @else
                                         border-dark
@@ -326,22 +331,24 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Performance Review">
+                                        value="Performance Review"
+                                        {{ old('radioUpgradeSalary') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Promotion">
+                                        value="Promotion" {{ old('radioUpgradeSalary') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer"
+                                        {{ old('radioEffectiveDateSalary') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Others">
+                                        value="Others" {{ old('radioEffectiveDateSalary') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -402,22 +409,26 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Performance Review">
+                                        value="Performance Review"
+                                        {{ old('radioUpgradeCharges') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Promotion">
+                                        value="Promotion"
+                                        {{ old('radioUpgradeCharges') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Lateral Transfer">
+                                        value="Lateral Transfer"
+                                        {{ old('radioEffectiveDateCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Others">
+                                        value="Others"
+                                        {{ old('radioEffectiveDateCharges') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -632,7 +643,7 @@
                                     @else
                                     border-dark
                                     @enderror"
-                                        id="approvalDate" name="approval_date">
+                                        id="approvalDate" name="approval_date" value="{{ old('approval_date') }}">
                                     @error('approval_date')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror

@@ -20,11 +20,9 @@ use function Laravel\Prompts\alert;
 Route::get('/view-forms',[PersonnelActionFormController::class,'index']);
 Route::get('/personnel-form/{id}', [PersonnelActionFormController::class, 'show']);
 Route::get('/delete-form/{id}',[PersonnelActionFormController::class,'delete']);
-Route::get('/add/personnelform',function(){
-    return view('personalactionform.form');
-});
+Route::get('/personnel/form/{id}',[PersonnelActionFormController::class,'create']);
 
-Route::post('/submit_store_form', [PersonnelActionFormController::class, 'store']);
+Route::post('/submit-store-form', [PersonnelActionFormController::class, 'store']);
 Route::post('/update-form/{id}',[PersonnelActionFormController::class,'update']);
 
 //evaluation form

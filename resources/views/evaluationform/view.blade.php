@@ -24,10 +24,10 @@
                     <div class="row">
                         <h2 class="col-6 px-5 py-2">Evaluation Forms</h2>
                         <div class="col-6 text-end">
-                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mt-2"><i
+                            <button data-bs-toggle="modal" data-bs-target="#selectEmployee" class="btn btn-success mt-2"><i
                                     class="fas fa-plus mx-2"></i>Create
                                 Form</button>
-                            <a href="/generate-blank-form" data-bs-target="#exampleModal" class="btn btn-primary mt-2"><i
+                            <a href="/generate-blank-form" class="btn btn-primary mt-2"><i
                                     class="fas fa-print mx-2"></i>Print Form</a>
                         </div>
                     </div>
@@ -88,12 +88,12 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="selectEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="selectEmployeeLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Employee Evaluation</h1>
+                    <h1 class="modal-title fs-5" id="selectEmployeeLabel">Employee Evaluation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -101,7 +101,7 @@
                         onchange="change(event)" required>
                         <option disabled selected>Select Employee</option>
                         @foreach ($employee as $employees)
-                            <option value="{{ $employees->id }}">{{ $employees->last_name }} {{ $employees->last_name }}
+                            <option value="{{ $employees->id }}">{{ $employees->last_name }} {{ $employees->first_name }}
                             </option>
                         @endforeach
 

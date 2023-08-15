@@ -39,7 +39,8 @@
                                         border-dark
                                     @enderror"
                                         id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
-                                        value="{{ old('employee_number', $personnelForm->employee_number) }}" required>
+                                        value="{{ old('employee_number', $personnelForm->employee->id) }}" required
+                                        readonly>
                                     @error('employee_number')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -67,7 +68,8 @@
                                     @enderror"
                                         placeholder="Lastname" id="last_name" name="last_name"
                                         onkeypress='return restrictNumbers(event)'
-                                        value="{{ old('last_name', $personnelForm->last_name) }}" required>
+                                        value="{{ old('last_name', $personnelForm->employee->last_name) }}" required
+                                        readonly>
                                     @error('last_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -81,14 +83,15 @@
                                     @enderror"
                                         placeholder="Firstname" id="first_name" name="first_name"
                                         onkeypress='return restrictNumbers(event)'
-                                        value="{{ old('first_name', $personnelForm->first_name) }}" required>
+                                        value="{{ old('first_name', $personnelForm->employee->first_name) }}" required
+                                        readonly>
                                     @error('first_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-4">
                                     <input type="date" class="form-control border border-dark shadow-sm"
-                                        name="date_hired" value="{{ $personnelForm->date_hired }}">
+                                        name="date_hired" value="{{ $personnelForm->employee->date_hired }}" readonly>
                                 </div>
                             </div>
                         </div>
