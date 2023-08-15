@@ -21,13 +21,14 @@
                     <p> <strong> Employee's Name:</strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->employee_name }}</span>
+                    <span style="text-transform:uppercase">{{ $evaluationForm->employee->last_name }}
+                        {{ $evaluationForm->employee->first_name }}</span>
                 </div>
                 <div class="col-3 text-end">
                     <p> <strong> Job Title: </strong></p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->job_title }}</span>
+                    <span style="text-transform:uppercase">{{ $evaluationForm->employee->position }}</span>
                 </div>
             </div>
             <div class="row container m-auto">

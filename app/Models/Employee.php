@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    public function evaluationForm(){
+        return $this->hasMany(EvaluationForm::class);
+    }
+    public function personnelForm(){
+        return $this->hasMany(PersonnelForm::class);
+    }
 }

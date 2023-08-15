@@ -100,28 +100,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Quality_Work"
-                                                value="4">
+                                                value="4" {{ old('Quality_Work') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Quality_Work"
-                                                value="3">
+                                                value="3" {{ old('Quality_Work') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Quality_Work"
-                                                value="2">
+                                                value="2" {{ old('Quality_Work') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Quality_Work"
-                                                value="1">
+                                                value="1" {{ old('Quality_Work') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -139,28 +139,31 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Attendance_Punctuality"
-                                                value="4">
+                                                value="4" {{ old('Attendance_Punctuality') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Attendance_Punctuality"
-                                                value="3">
+                                                value="3"
+                                                {{ old('Attendance_Punctuality') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Attendance_Punctuality"
-                                                value="2">
+                                                value="2"
+                                                {{ old('Attendance_Punctuality') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Attendance_Punctuality"
-                                                value="1">
+                                                value="1"
+                                                {{ old('Attendance_Punctuality') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -179,28 +182,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Reliability"
-                                                value="4">
+                                                value="4" {{ old('Reliability') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Reliability"
-                                                value="3">
+                                                value="3" {{ old('Reliability') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Reliability"
-                                                value="2">
+                                                value="2" {{ old('Reliability') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Reliability"
-                                                value="1">
+                                                value="1" {{ old('Reliability') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -218,28 +221,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Communication"
-                                                value="4">
+                                                value="4" {{ old('Communication') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Communication"
-                                                value="3">
+                                                value="3" {{ old('Communication') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Communication"
-                                                value="2">
+                                                value="2" {{ old('Communication') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Communication"
-                                                value="1">
+                                                value="1" {{ old('Communication') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -257,28 +260,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Judgment"
-                                                value="4">
+                                                value="4" {{ old('Judgment') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Judgment"
-                                                value="3">
+                                                value="3" {{ old('Judgment') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Judgment"
-                                                value="2">
+                                                value="2" {{ old('Judgment') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Judgment"
-                                                value="1">
+                                                value="1" {{ old('Judgment') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -297,28 +300,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Initiative"
-                                                value="4">
+                                                value="4" {{ old('Initiative') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Initiative"
-                                                value="3">
+                                                value="3" {{ old('Initiative') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Initiative"
-                                                value="2">
+                                                value="2" {{ old('Initiative') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Initiative"
-                                                value="1">
+                                                value="1" {{ old('Initiative') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -351,28 +354,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Knowledge"
-                                                value="4">
+                                                value="4" {{ old('Knowledge') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Knowledge"
-                                                value="3">
+                                                value="3" {{ old('Knowledge') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Knowledge"
-                                                value="2">
+                                                value="2" {{ old('Knowledge') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Knowledge"
-                                                value="1">
+                                                value="1" {{ old('Knowledge') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -390,28 +393,28 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Training"
-                                                value="4">
+                                                value="4" {{ old('Training') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Training"
-                                                value="3">
+                                                value="3" {{ old('Training') == '3' ? 'checked' : '' }}>
                                             <label class="form-check-label">Meets expectations</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Training"
-                                                value="2">
+                                                value="2" {{ old('Training') == '2' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Needs improvements</label>
                                         </div>
                                     </td>
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Training"
-                                                value="1">
+                                                value="1" {{ old('Training') == '1' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="">Unacceptable</label>
                                         </div>
                                     </td>
@@ -431,20 +434,21 @@
                                 @else
                                 border-dark
                                 @enderror"
-                                    name="Performance" placeholder="Enter text here" rows="5" style="resize: none"></textarea>
+                                    name="Performance" placeholder="Enter text here" rows="5" style="resize: none">{{ old('Performance') }}</textarea>
                                 @error('Performance')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="employee_id" value="{{ $employeeInfo->id }}" />
                     <div class="container mt-3">
                         <h4 class="fw-bold">VI. EMPLOYEE COMMENTS(OPTIONAL)</h4>
                         <div class="container">
                             <div class="mb-3">
                                 <label for="exampleTextarea" class="form-label">Comments</label>
                                 <textarea class="form-control border border-dark shadow-sm" name="Comments" placeholder="Enter comment here"
-                                    rows="5" style="resize:none"></textarea>
+                                    rows="5" style="resize:none">{{ old('Comments') }}</textarea>
                             </div>
                         </div>
                         <div class="text-end">

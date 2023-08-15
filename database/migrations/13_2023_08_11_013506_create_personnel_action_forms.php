@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('evaluation_forms', function (Blueprint $table) {
+        Schema::create('personnel_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_name');
-            $table->string('job_title');
-            $table->string('reviewer');
-            $table->date('review_period');
-            $table->decimal('rating',10,1)->nullable();
+            $table->unsignedBigInteger('employee_id');
+            $table->date('date_prepared');
             $table->timestamps();
+
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('evaluation_forms');
+        Schema::dropIfExists('personnel_forms');
     }
 };

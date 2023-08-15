@@ -27,7 +27,8 @@
                             <tbody>
                                 @foreach ($employee as $employees)
                                     <tr class="text-middle">
-                                        <td class="col align-middle">{{ $employees->last_name }}{{ $employees->first_name }}
+                                        <td class="col align-middle">{{ $employees->last_name }}
+                                            {{ $employees->first_name }}
                                         </td>
                                         <td class="col align-middle">{{ $employees->position }}</td>
                                         <td class="col align-middle">{{ $employees->date_hired }}</td>

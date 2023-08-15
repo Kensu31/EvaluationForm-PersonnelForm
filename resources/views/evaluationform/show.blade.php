@@ -53,7 +53,9 @@
                             @else
                             border-dark
                             @enderror"
-                                name="employee_name" value="{{ $evaluationForm->employee_name }}" readonly />
+                                name="employee_name"
+                                value="{{ $evaluationForm->employee->last_name }} {{ $evaluationForm->employee->first_name }}"
+                                readonly />
                             @error('employee_name')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -66,7 +68,7 @@
                         @else
                         border-dark
                         @enderror"
-                                name="job_title" value="{{ $evaluationForm->job_title }}" readonly>
+                                name="job_title" value="{{ $evaluationForm->employee->position }}" readonly>
                             @error('job_title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

@@ -38,4 +38,7 @@ class PersonnelForm extends Model
     {
         return $this->hasOne(Approval::class);
     }
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

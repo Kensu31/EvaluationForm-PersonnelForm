@@ -43,7 +43,8 @@
                             <tbody>
                                 @foreach ($records as $record)
                                     <tr class="text-middle">
-                                        <td class="col align-middle">Evalaution Form for {{ $record->employee_name }}
+                                        <td class="col align-middle">Evalaution Form for
+                                            {{ $record->employee->last_name }} {{ $record->employee->first_name }}
                                         </td>
                                         <td class="col align-middle">{{ $record->created_at }}</td>
                                         <td class="col text-center">

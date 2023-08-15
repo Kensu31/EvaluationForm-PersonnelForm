@@ -9,8 +9,6 @@ class EvaluationForm extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'employee_name',
-        'job_title',
         'reviewer',
         'review_period',
         'rating',
@@ -18,6 +16,9 @@ class EvaluationForm extends Model
     ];
     public function evaluationFormAnswer(){
         return $this->hasOne(EvaluationFormAnswer::class);
+    }
+    public function employee(){
+        return $this->belongsTo(Employee::class);
     }
 
 }
