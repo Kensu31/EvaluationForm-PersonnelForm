@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\generatePDFs;
+use App\Http\Controllers\IncidentReportController;
 use App\Http\Controllers\PersonnelActionFormController;
 use Illuminate\Support\Facades\Route;
 use function Laravel\Prompts\alert;
@@ -38,8 +40,17 @@ Route::get('generate-blank-form',function(){
 });
 
 
+//incident report
+route::get('/',[IncidentReportController::class,'index']);
+Route::get('incident/form/{id}',[IncidentReportController::class,'create']);
+Route::get('/show-incident-form/{id}',[IncidentReportController::class,'show']);
+Route::post('/submit-incident-form',[IncidentReportController::class,'store']);
+
+//print
+Route::get('/generate-pdf',[generatePDFs::class,'generateEvaluationPlain'])->name('generate.pdf');
+
 //employee
 route::get('/1',function(){
     return view('all_forms');
 });
-route::get('/',[EmployeeController::class,'index']);
+ 

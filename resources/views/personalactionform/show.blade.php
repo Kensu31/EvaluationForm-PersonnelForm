@@ -7,6 +7,22 @@
         small {
             font-size: 12px !important;
         }
+
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            /* Optional: Remove any border-radius to make it fully flat */
+            padding: 5px 0;
+            /* Optional: Add some padding for visual separation */
+        }
+
+        .underline-input:focus {
+            border-color: #ccc;
+            box-shadow: none;
+            background-color: #f0f0f0;
+            transition: background-color 0.2s ease-in-out;
+        }
     </style>
     <div class="container mt-5">
         @if (session()->has('success'))
@@ -33,7 +49,7 @@
                             <div class="row g-2">
                                 <div class="col-8">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('employee_number')
+                                        class="form-control underline-input px-2  @error('employee_number')
                                         border-danger
                                         @else
                                         border-dark
@@ -46,7 +62,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                    <input type="date" class="form-control underline-input px-2 border-dark "
                                         id="datePrepared" value="{{ $personnelForm->date_prepared }}" name="date_prepared"
                                         required>
                                 </div>
@@ -61,7 +77,7 @@
                             <div class="row g-2">
                                 <div class="col-4">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('last_name')
+                                        class="form-control underline-input px-2   @error('last_name')
                                         border-danger
                                         @else
                                         border-dark
@@ -76,7 +92,7 @@
                                 </div>
                                 <div class="col-4">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('first_name')
+                                        class="form-control underline-input px-2   @error('first_name')
                                         border-danger
                                         @else
                                         border-dark
@@ -90,7 +106,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                    <input type="date" class="form-control underline-input px-2 border-dark "
                                         name="date_hired" value="{{ $personnelForm->employee->date_hired }}" readonly>
                                 </div>
                             </div>
@@ -103,39 +119,57 @@
                                 <h4 class="bg-light py-3 px-2 rounded">POSITION UPGRADE AND MOVEMENT</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
-                        </div>
-                        <div class="row g-2">
-                            <div class="row g-2">
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Performance Review" @if ($personnelForm->positionMovements->reason_for_upgrade === 'Performance Review') checked @endif>
-                                    <label class="form-check-label">Performance Review</label>
-                                    @error('radioUpgradePosition')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Promotion" @if ($personnelForm->positionMovements->reason_for_upgrade === 'Promotion') checked @endif>
-                                    <label class="form-check-label">Promotion</label>
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Lateral Transfer" @if ($personnelForm->positionMovements->effective_date === 'Lateral Transfer') checked @endif>
-                                    <label class="form-check-label">Lateral Transfer</label>
-                                    @error('radioEffectiveDatePosition')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Others" @if ($personnelForm->positionMovements->effective_date === 'Others') checked @endif>
-                                    <label class="form-check-label">Others</label>
+                        <div class="container mt-4">
+                            <div class="row g-2 align-items-baseline">
+                                <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                                <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                                <div class="col-4">
+                                    <input type="date" class="form-control underline-input px-2"
+                                        name="radioEffectiveDatePosition" id="radioEffectiveDatePosition"
+                                        value="{{ old('radioEffectiveDatePosition', $personnelForm->positionMovements->effective_date) }}">
                                 </div>
                             </div>
+                            <div class="row g-2">
+                                <div class="row g-2">
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Performance Review"
+                                            {{ old('radioUpgradePosition') == 'Performance Review' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Performance Review</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Promotion"
+                                            {{ old('radioUpgradePosition') == 'Promotion' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Promotion</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Lateral Transfer"
+                                            {{ old('radioUpgradePosition') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Lateral Transfer</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Others"
+                                            {{ Str::startsWith($personnelForm->positionMovements->radioUpgradePosition ?? '', 'Others') ? 'checked' : '' }}>
+                                        <label class="form-check-label">Others</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>s{{ Str::startsWith($personnelForm->positionMovements->radioUpgradePosition) }}</p>
+                            <div class="form-group other-input mt-2" id="otherUpgradePosition" style="display: none;">
+                                <input type="text" class="form-control" name="otherUpgradePosition"
+                                    placeholder="Other Reason">
+                            </div>
+                        </div>
+                        <div class="row">
+                            @error('radioUpgradePosition')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
+                            @error('radioEffectiveDatePosition')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="row g-2 mt-3">
                             <h6 class="col-2 fw-bold">Result:</h6>
@@ -149,7 +183,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('job_title_from')
+                                        class="form-control underline-input px-2  @error('job_title_from')
                                     border-danger
                                     @else
                                         border-dark
@@ -163,7 +197,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('job_title_from')
+                                        class="form-control underline-input px-2  @error('job_title_from')
                                     border-danger
                                     @else
                                         border-dark
@@ -177,7 +211,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('job_level_from')
+                                        class="form-control underline-input px-2   @error('job_level_from')
                                         border-danger
                                         @else
                                         border-dark
@@ -192,7 +226,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('job_level_to')
+                                        class="form-control underline-input px-2   @error('job_level_to')
                                         border-danger
                                         @else
                                         border-dark
@@ -214,7 +248,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('department_from')
+                                        class="form-control underline-input px-2   @error('department_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -229,7 +263,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('department_to')
+                                        class="form-control underline-input px-2   @error('department_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -243,7 +277,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('supervisor_from')
+                                        class="form-control underline-input px-2   @error('supervisor_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -258,7 +292,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('supervisor_to')
+                                        class="form-control underline-input px-2   @error('supervisor_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -279,7 +313,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('employment_status_from')
+                                        class="form-control underline-input px-2   @error('employment_status_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -294,7 +328,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('employment_status_to')
+                                        class="form-control underline-input px-2   @error('employment_status_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -317,33 +351,52 @@
                                 <h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
+                        <div class="row g-2 align-items-baseline">
+                            <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                            <div class="col-4">
+                                <input type="date" class="form-control underline-input px-2"
+                                    name="radioEffectiveDateSalary" id="radioEffectiveDateSalary"
+                                    value="{{ old('radioEffectiveDateSalary', $personnelForm->salaryAdjustments->effective_date) }}">
+                            </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Performance Review" @if ($personnelForm->salaryAdjustments->reason_for_upgrade === 'Performance Review') checked @endif>
+                                        value="Performance Review"
+                                        {{ old('radioUpgradeSalary') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Promotion" @if ($personnelForm->salaryAdjustments->reason_for_upgrade === 'Promotion') checked @endif>
+                                        value="Promotion" {{ old('radioUpgradeSalary') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Lateral Transfer" @if ($personnelForm->salaryAdjustments->effective_date === 'Lateral Transfer') checked @endif>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
+                                        value="Lateral Transfer"
+                                        {{ old('radioUpgradeSalary') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Others" @if ($personnelForm->salaryAdjustments->effective_date === 'Others') checked @endif>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
+                                        value="Others" {{ old('radioUpgradeSalary') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group other-input mt-2" id="otherUpgradeSalary" style="display: none;">
+                            <input type="text" class="form-control" name="otherUpgradeSalary"
+                                placeholder="Other Reason">
+                        </div>
+                        <div class="row">
+                            @error('radioUpgradeSalary')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
+                            @error('radioEffectiveDateSalary')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="row g-2 mt-3 text-center">
                             <h6 class="col-12 fw-bold">Basic Salary</h6>
@@ -352,7 +405,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('basic_salary_from')
+                                        class="form-control underline-input px-2   @error('basic_salary_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -366,7 +419,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('basic_salary_to')
+                                        class="form-control underline-input px-2   @error('basic_salary_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -387,35 +440,53 @@
                                 <h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
+                        <div class="row g-2 align-items-baseline">
+                            <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                            <div class="col-4">
+                                <input type="date" class="form-control underline-input px-2"
+                                    name="radioEffectiveDateCharges" id="radioEffectiveDateCharges"
+                                    value="{{ old('radioEffectiveDateCharges', $personnelForm->benefitAdjustments->effective_date) }}">
+                            </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Performance Review" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Performance Review') checked @endif
-                                        required>
+                                        value="Performance Review"
+                                        {{ old('radioUpgradeCharges') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Promotion" @if ($personnelForm->benefitAdjustments->reason_for_upgrade === 'Promotion') checked @endif required>
+                                        value="Promotion"
+                                        {{ old('radioUpgradeCharges') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Lateral Transfer" @if ($personnelForm->benefitAdjustments->effective_date === 'Lateral Transfer') checked @endif
-                                        required>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                        value="Lateral Transfer"
+                                        {{ old('radioUpgradeCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Others" @if ($personnelForm->benefitAdjustments->effective_date === 'Others') checked @endif required>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                        value="Others" {{ old('radioUpgradeCharges') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group other-input mt-2" id="otherUpgradeCharges" style="display:none;">
+                            <input type="text" class="form-control" name="otherUpgradeCharges"
+                                placeholder="Other Reason">
+                        </div>
+                        <div class="row">
+                            @error('radioUpgradeCharges')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
+                            @error('radioEffectiveDateCharges')
+                                <small class="col-6 text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="row g-2 mt-3 text-center">
                             <h6 class="col-6 fw-bold">Food Allowance</h6>
@@ -425,7 +496,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('food_allowance_from')
+                                        class="form-control underline-input px-2   @error('food_allowance_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -440,7 +511,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('food_allowance_to')
+                                        class="form-control underline-input px-2   @error('food_allowance_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -455,7 +526,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('vacation_leave_from')
+                                        class="form-control underline-input px-2   @error('vacation_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -469,7 +540,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('vacation_leave_to')
+                                        class="form-control underline-input px-2   @error('vacation_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -492,7 +563,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('sick_leave_from')
+                                        class="form-control underline-input px-2   @error('sick_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -507,7 +578,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('sick_leave_to')
+                                        class="form-control underline-input px-2   @error('sick_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -521,7 +592,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('birthday_leave_from')
+                                        class="form-control underline-input px-2   @error('birthday_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -536,7 +607,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('birthday_leave_to')
+                                        class="form-control underline-input px-2   @error('birthday_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -563,7 +634,7 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Remarkable Performance:</h6>
                                 <textarea
-                                    class="form-control border shadow-sm  @error('remarkable_performance')
+                                    class="form-control border   @error('remarkable_performance')
                                 border-danger
                                 @else
                                 border-dark
@@ -576,7 +647,7 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Rooms for improvements:</h6>
                                 <textarea
-                                    class="form-control border shadow-sm  @error('rooms_for_improvements')
+                                    class="form-control border   @error('rooms_for_improvements')
                                 border-danger
                                 @else
                                 border-dark
@@ -604,7 +675,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('manager_name')
+                                        class="form-control underline-input px-2   @error('manager_name')
                                     border-danger
                                     @else
                                     border-dark
@@ -618,7 +689,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('received')
+                                        class="form-control underline-input px-2   @error('received')
                                     border-danger
                                     @else
                                     border-dark
@@ -630,7 +701,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-3">
-                                    <input type="date" class="form-control border border-dark shadow-sm"
+                                    <input type="date" class="form-control underline-input px-2 border-dark "
                                         name="approval_date" value="{{ $personnelForm->approvals->approval_date }}"
                                         required>
                                 </div>

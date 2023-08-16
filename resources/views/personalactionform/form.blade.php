@@ -7,6 +7,22 @@
         small {
             font-size: 12px !important;
         }
+
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            /* Optional: Remove any border-radius to make it fully flat */
+            padding: 5px 0;
+            /* Optional: Add some padding for visual separation */
+        }
+
+        .underline-input:focus {
+            border-color: #ccc;
+            box-shadow: none;
+            background-color: #f0f0f0;
+            transition: background-color 0.2s ease-in-out;
+        }
     </style>
     <div class="container mt-5">
         @if (session()->has('success'))
@@ -33,20 +49,20 @@
                             <div class="row g-2">
                                 <div class="col-8">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('employee_number')
+                                        class="form-control underline-input px-2  @error('employee_number')
                                         border-danger
                                         @else
                                         border-dark
                                     @enderror"
-                                        id="employee_number" name="employee_number" onkeypress='return onlyDigits(event)'
-                                        value="{{ $employeeInfo->id }}" required readonly>
+                                        id="employee_number" name="employee_number" value="{{ $employeeInfo->id }}"
+                                        onkeypress='return onlyDigits(event)' required readonly>
                                     @error('employee_number')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-4">
                                     <input type="date"
-                                        class="form-control border shadow-sm @error('date_prepared')
+                                        class="form-control underline-input px-2  @error('date_prepared')
                                     border-danger
                                     @else
                                     border-dark
@@ -67,40 +83,40 @@
                             <div class="row g-2">
                                 <div class="col-4">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('last_name')
+                                        class="form-control underline-input px-2   @error('last_name')
                                         border-danger
                                         @else
                                         border-dark
                                     @enderror"
                                         placeholder="Lastname" id="last_name" name="last_name"
                                         onkeypress='return restrictNumbers(event)' value="{{ $employeeInfo->last_name }}"
-                                        required readonly>
+                                        required readonly disabled>
                                     @error('last_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-4">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('first_name')
+                                        class="form-control underline-input px-2   @error('first_name')
                                         border-danger
                                         @else
                                         border-dark
                                     @enderror"
                                         placeholder="Firstname" id="first_name" name="first_name"
                                         onkeypress='return restrictNumbers(event)' value="{{ $employeeInfo->first_name }}"
-                                        required readonly>
+                                        required readonly disabled>
                                     @error('first_name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-4">
                                     <input type="date"
-                                        class="form-control border shadow-sm @error('date_hired')
+                                        class="form-control underline-input px-2  @error('date_hired')
                                     border-danger
                                     @else
                                     border-dark
                                     @enderror"
-                                        name="date_hired" value="{{ $employeeInfo->date_hired }}" readonly>
+                                        name="date_hired" value="{{ $employeeInfo->date_hired }}" readonly disabled>
                                     @error('date_hired')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -116,37 +132,46 @@
                                 <h4 class="bg-light py-3 px-2 rounded">POSITION UPGRADE AND MOVEMENT</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
-                        </div>
-                        <div class="row g-2">
+                        <div class="container mt-4">
+                            <div class="row g-2 align-items-baseline">
+                                <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                                <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                                <div class="col-4">
+                                    <input type="date" class="form-control underline-input px-2"
+                                        name="radioEffectiveDatePosition" id="radioEffectiveDatePosition"
+                                        value="{{ old('radioEffectiveDatePosition') }}">
+                                </div>
+                            </div>
                             <div class="row g-2">
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Performance Review"
-                                        {{ old('radioUpgradePosition') == 'Performance Review' ? 'checked' : '' }}>
-                                    <label class="form-check-label">Performance Review</label>
-
+                                <div class="row g-2">
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Performance Review"
+                                            {{ old('radioUpgradePosition') == 'Performance Review' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Performance Review</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Promotion"
+                                            {{ old('radioUpgradePosition') == 'Promotion' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Promotion</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Lateral Transfer"
+                                            {{ old('radioUpgradePosition') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        <label class="form-check-label">Lateral Transfer</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-check-input" type="radio" name="radioUpgradePosition"
+                                            value="Others">
+                                        <label class="form-check-label">Others</label>
+                                    </div>
                                 </div>
-
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradePosition"
-                                        value="Promotion"
-                                        {{ old('radioUpgradePosition') == 'Promotion' ? 'checked' : '' }}>
-                                    <label class="form-check-label">Promotion</label>
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Lateral Transfer"
-                                        {{ old('radioEffectiveDatePosition') == 'Lateral Transfer' ? 'checked' : '' }}>
-                                    <label class="form-check-label">Lateral Transfer</label>
-                                </div>
-                                <div class="col-3" {{ old('radioEffectiveDatePosition') == 'Others' ? 'checked' : '' }}>
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDatePosition"
-                                        value="Others">
-                                    <label class="form-check-label">Others</label>
-                                </div>
+                            </div>
+                            <div class="form-group other-input mt-2" id="otherUpgradePosition" style="display: none;">
+                                <input type="text" class="form-control" name="otherUpgradePosition"
+                                    placeholder="Other Reason">
                             </div>
                         </div>
                         <div class="row">
@@ -169,7 +194,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('job_title_from')
+                                        class="form-control underline-input px-2  @error('job_title_from')
                                     border-danger
                                     @else
                                         border-dark
@@ -182,7 +207,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm @error('job_title_to')
+                                        class="form-control underline-input px-2  @error('job_title_to')
                                     border-danger
                                     @else
                                         border-dark
@@ -195,7 +220,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('job_level_from')
+                                        class="form-control underline-input px-2   @error('job_level_from')
                                         border-danger
                                         @else
                                         border-dark
@@ -208,7 +233,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('job_level_to')
+                                        class="form-control underline-input px-2   @error('job_level_to')
                                         border-danger
                                         @else
                                         border-dark
@@ -229,7 +254,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('department_from')
+                                        class="form-control underline-input px-2   @error('department_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -242,7 +267,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('department_to')
+                                        class="form-control underline-input px-2   @error('department_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -255,7 +280,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('supervisor_from')
+                                        class="form-control underline-input px-2   @error('supervisor_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -268,7 +293,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('supervisor_to')
+                                        class="form-control underline-input px-2   @error('supervisor_to')
                                         border-danger
                                         @else
                                         border-dark
@@ -288,7 +313,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('employment_status_from')
+                                        class="form-control underline-input px-2   @error('employment_status_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -302,7 +327,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('employment_status_to')
+                                        class="form-control underline-input px-2   @error('employment_status_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -323,9 +348,14 @@
                                 <h4 class="bg-light py-3 px-2 rounded">SALARY ADJUSTMENT</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
+                        <div class="row g-2 align-items-baseline">
+                            <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                            <div class="col-4">
+                                <input type="date" class="form-control underline-input px-2"
+                                    name="radioEffectiveDateSalary" id="radioEffectiveDateSalary"
+                                    value="{{ old('radioEffectiveDateSalary') }}">
+                            </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
@@ -341,17 +371,21 @@
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
                                         value="Lateral Transfer"
-                                        {{ old('radioEffectiveDateSalary') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        {{ old('radioUpgradeSalary') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateSalary"
-                                        value="Others" {{ old('radioEffectiveDateSalary') == 'Others' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeSalary"
+                                        value="Others" {{ old('radioUpgradeSalary') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group other-input mt-2" id="otherUpgradeSalary" style="display: none;">
+                            <input type="text" class="form-control" name="otherUpgradeSalary"
+                                placeholder="Other Reason">
                         </div>
                         <div class="row">
                             @error('radioUpgradeSalary')
@@ -368,7 +402,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('basic_salary_from')
+                                        class="form-control underline-input px-2   @error('basic_salary_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -381,7 +415,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('basic_salary_to')
+                                        class="form-control underline-input px-2   @error('basic_salary_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -401,9 +435,14 @@
                                 <h4 class="bg-light py-3 px-2 rounded">ADDITIONAL / CHANGES IN BENEFITS</h4>
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <h6 class="col-6 fw-bold">Reason for upgrade:</h6>
-                            <h6 class="col-6 fw-bold">Effective Date:</h6>
+                        <div class="row g-2 align-items-baseline">
+                            <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
+                            <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
+                            <div class="col-4">
+                                <input type="date" class="form-control underline-input px-2"
+                                    name="radioEffectiveDateCharges" id="radioEffectiveDateCharges"
+                                    value="{{ old('radioEffectiveDateCharges') }}">
+                            </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
@@ -420,18 +459,21 @@
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
                                         value="Lateral Transfer"
-                                        {{ old('radioEffectiveDateCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        {{ old('radioUpgradeCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioEffectiveDateCharges"
-                                        value="Others"
-                                        {{ old('radioEffectiveDateCharges') == 'Others' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                        value="Others" {{ old('radioUpgradeCharges') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group other-input mt-2" id="otherUpgradeCharges" style="display:none;">
+                            <input type="text" class="form-control" name="otherUpgradeCharges"
+                                placeholder="Other Reason">
                         </div>
                         <div class="row">
                             @error('radioUpgradeCharges')
@@ -449,7 +491,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('food_allowance_from')
+                                        class="form-control underline-input px-2   @error('food_allowance_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -462,7 +504,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('food_allowance_to')
+                                        class="form-control underline-input px-2   @error('food_allowance_to')
                                 border-danger
                                 @else
                                 border-dark
@@ -475,7 +517,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('vacation_leave_from')
+                                        class="form-control underline-input px-2   @error('vacation_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -488,7 +530,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('vacation_leave_to')
+                                        class="form-control underline-input px-2   @error('vacation_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -509,7 +551,7 @@
                             <div class="row g-2">
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('sick_leave_from')
+                                        class="form-control underline-input px-2   @error('sick_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -522,7 +564,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('sick_leave_to')
+                                        class="form-control underline-input px-2   @error('sick_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -535,7 +577,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('birthday_leave_from')
+                                        class="form-control underline-input px-2   @error('birthday_leave_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -548,7 +590,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('birthday_leave_to')
+                                        class="form-control underline-input px-2   @error('birthday_leave_to')
                                     border-danger
                                     @else
                                     border-dark
@@ -572,7 +614,7 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Remarkable Performance:</h6>
                                 <textarea
-                                    class="form-control border shadow-sm  @error('remarkable_performance')
+                                    class="form-control border px-2   @error('remarkable_performance')
                                 border-danger
                                 @else
                                 border-dark
@@ -585,7 +627,7 @@
                             <div class="col-12 mt-4">
                                 <h6 class="fw-bold text-center">Rooms for improvements:</h6>
                                 <textarea
-                                    class="form-control border shadow-sm  @error('rooms_for_improvements')
+                                    class="form-control border px-2   @error('rooms_for_improvements')
                                 border-danger
                                 @else
                                 border-dark
@@ -612,7 +654,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('manager_name')
+                                        class="form-control underline-input px-2   @error('manager_name')
                                     border-danger
                                     @else
                                     border-dark
@@ -625,7 +667,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="text"
-                                        class="form-control border shadow-sm  @error('received')
+                                        class="form-control underline-input px-2   @error('received')
                                     border-danger
                                     @else
                                     border-dark
@@ -638,7 +680,7 @@
                                 </div>
                                 <div class="col-3">
                                     <input type="date"
-                                        class="form-control border shadow-sm @error('approval_date')
+                                        class="form-control underline-input px-2  @error('approval_date')
                                     border-danger
                                     @else
                                     border-dark
@@ -707,8 +749,69 @@
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
         {{-- script  --}}
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const radioUpgradePosition = document.querySelectorAll('input[name="radioUpgradePosition"]');
+                const radioUpgradeCharges = document.querySelectorAll('input[name="radioUpgradeCharges"]');
+                const radioUpgradeSalary = document.querySelectorAll('input[name="radioUpgradeSalary"]');
+
+                const otherUpgradePosition = document.getElementById("otherUpgradePosition");
+                const otherUpgradeSalary = document.getElementById("otherUpgradeSalary");
+                const otherUpgradeCharges = document.getElementById("otherUpgradeCharges");
+                const fieldUpgradePosition = document.getElementsByName("otherUpgradePosition")[0];
+                const fieldUpgradeSalary = document.getElementsByName("otherUpgradeSalary")[0];
+                const fieldUpgradeCharges = document.getElementsByName("otherUpgradeCharges")[0];
+
+
+                function toggleOtherInput() {
+                    if (radioUpgradePosition[3].checked) {
+                        otherUpgradePosition.style.display = "block";
+                        fieldUpgradePosition.value = '';
+                    } else {
+                        otherUpgradePosition.style.display = "none";
+                    }
+                }
+
+                function toggleOtherInputSalary() {
+                    if (radioUpgradeSalary[3].checked) {
+                        otherUpgradeSalary.style.display = "block";
+                        fieldUpgradeSalary.value = '';
+                    } else {
+                        otherUpgradeSalary.style.display = "none";
+                    }
+                }
+
+                function toggleOtherInputCharges() {
+                    if (radioUpgradeCharges[3].checked) {
+                        otherUpgradeCharges.style.display = "block";
+                        fieldUpgradeCharges.value = '';
+                    } else {
+                        otherUpgradeCharges.style.display = "none";
+                    }
+                }
+
+                radioUpgradePosition.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInput);
+                });
+                radioUpgradeSalary.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInputSalary);
+                });
+                radioUpgradeCharges.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInputCharges);
+                });
+
+                toggleOtherInput();
+                toggleOtherInputSalary();
+                toggleOtherInputCharges();
+            });
+
             function onlyDigits(event) {
                 const charCode = event.charCode || event.keyCode;
                 if ((charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 46) {

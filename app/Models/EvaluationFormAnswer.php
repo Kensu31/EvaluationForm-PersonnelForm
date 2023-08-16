@@ -18,7 +18,7 @@ class EvaluationFormAnswer extends Model
         'Knowledge',
         'Training',
         'Performance',
-        'Commnents',
+        'Comments',
     ];
 
     public function evaluationForm(){

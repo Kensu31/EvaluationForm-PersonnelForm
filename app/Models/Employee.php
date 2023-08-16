@@ -14,4 +14,7 @@ class Employee extends Model
     public function personnelForm(){
         return $this->hasMany(PersonnelForm::class);
     }
+    public function incidentReportForm(){
+        return $this->hasMany(IncidentReportForm::class);
+    }
 }

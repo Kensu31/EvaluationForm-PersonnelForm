@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('personnel_form_id');
             $table->foreign('personnel_form_id')->references('id')->on('personnel_forms')->onDelete('cascade');
             $table->string('reason_for_upgrade');
-            $table->string('effective_date');
+            $table->date('effective_date');
             $table->string('job_title_from');
             $table->string('job_title_to');
             $table->string('job_level_from');

@@ -4,83 +4,121 @@
 @endsection
 @section('content')
     <style>
+        body {
+            font-size: 13px;
+        }
+
         small {
             font-size: 12px;
+        }
+
+        input {
+            font-size: 13px !important;
+        }
+
+        table {
+            font-size: 13px !important;
+        }
+
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            /* Optional: Remove any border-radius to make it fully flat */
+            padding: 5px 0;
+            /* Optional: Add some padding for visual separation */
+        }
+
+        .underline-input:focus {
+            border-color: #ccc;
+            box-shadow: none;
+            background-color: #f0f0f0;
+            transition: background-color 0.2s ease-in-out;
         }
     </style>
     <div class="container">
         <div class="card m-auto mt-5 mb-5 border shadow p-3 rounded rounded-4" style="width:90%">
-            <div class="card-tit">
-                <h1 class="m-3 fst-italic">Employee Evaluation Form</h1>
+            <div class="card-tite border-bottom text-center">
+                <h1 class="m-3 fw-bold">Employee Evaluation Form</h1>
             </div>
             <div class="card-body">
 
                 <form action="/submit-evaluation-form" method="POST" class="row g-3 pb-4">
                     @csrf
-                    <div class="col-md-10">
-                        <h4 class="fw-bold">I. EMPLOYEE INFORMATION</h4>
+                    <div class="col-md-10 mt-5">
+                        <h5 class="fw-bold">I. EMPLOYEE INFORMATION</h5>
                     </div>
                     <div class="row px-5 py-2">
-                        <div class="col-md-3">
-                            <label for="employee_name" class="form-label">Employee name:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('employee_name')
-                                border-danger
-                            @else
-                            border-dark
-                            @enderror"
-                                name="employee_name" value="{{ $employeeInfo->last_name }} {{ $employeeInfo->first_name }}"
-                                onkeypress="return(restrictNumbers(event))" readonly />
-                            @error('employee_name')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="employee_name" class="form-label me-3 mb-0 align-middle">Employee name:</label>
+                            <div class="flex-grow-1">
+                                <input type="text"
+                                    class="form-control underline-input px-2 @error('employee_name') border-danger @else border-dark @enderror"
+                                    name="employee_name"
+                                    value="{{ $employeeInfo->last_name }} {{ $employeeInfo->first_name }}"
+                                    onkeypress="return restrictNumbers(event)" readonly />
+                                @error('employee_name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <label for="job_title" class="form-label">Job Title:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('job_title')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="job_title"
-                                value="{{ $employeeInfo->position }}"onkeypress="return(restrictNumbers(event))" readonly />
-                            @error('job_title')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label for="reviewer" class="form-label">Supervisor/Reviewer:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('reviewer')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="reviewer" value="{{ old('reviewer') }}" onkeypress="return(restrictNumbers(event))" />
-                            @error('reviewer')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label for="inputAddress" class="form-label">Review Period:</label>
-                            <input type="date"
-                                class="form-control border shadow-sm  @error('review_period')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="review_period" value="{{ old('review_period') }}">
-                            @error('review_period')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-md-10 mt-5">
-                            <h4 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h4>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="job_title" class="form-label me-3 mb-0 align-middle">Job Title:</label>
+                            <div class="flex-grow-1">
+                                <input type="text"
+                                    class="form-control underline-input px-2 @error('job_title') border-danger @else border-dark @enderror"
+                                    name="job_title" value="{{ $employeeInfo->position }}"
+                                    onkeypress="return restrictNumbers(event)" readonly />
+                                @error('job_title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
                     </div>
+                    <div class="row px-5 py-2">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="reviewer" class="form-label me-3 mb-0 align-middle">Supervisor/Reviewer:</label>
+                            <div class="flex-grow-1">
+                                <input type="text"
+                                    class="form-control underline-input px-2 @error('reviewer')
+                                        border-danger
+                                    @else
+                                    border-dark
+                                    @enderror"
+                                    name="reviewer" value="{{ old('reviewer') }}"
+                                    onkeypress="return(restrictNumbers(event))" />
+                                @error('reviewer')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="inputAddress" class="form-label me-3 mb-0 align-middle">Review Period:</label>
+                            <div class="flex-grow-1">
+                                <input type="date"
+                                    class="form-control underline-input px-2  @error('review_period')
+                                        border-danger
+                                    @else
+                                    border-dark
+                                    @enderror"
+                                    name="review_period" value="{{ old('review_period') }}">
+                                @error('review_period')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-md-10 mt-5">
+                        <h4 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h4>
+                    </div>
+
                     <div class="table-responsive px-5">
-                        <table class="table table-striped border border-dark shadow-sm ">
+                        <table class="table table-striped border border-dark ">
                             <thead>
                                 <tr class="table-dark">
                                     <th class="col-md-4 text-center p-3">PERFORMANCE CATEGORY</th>
@@ -139,7 +177,8 @@
                                     <td class="col-md-2 text-center align-middle">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="Attendance_Punctuality"
-                                                value="4" {{ old('Attendance_Punctuality') == '4' ? 'checked' : '' }}>
+                                                value="4"
+                                                {{ old('Attendance_Punctuality') == '4' ? 'checked' : '' }}>
                                             <label class="form-check-label">Exceeds expectations</label>
                                         </div>
                                     </td>

@@ -11,22 +11,23 @@ use App\Models\PositionMovement;
 use App\Models\SalaryAdjustment;
 use Illuminate\Http\Request;
 
-
 class PersonnelActionFormController extends Controller
 {
     public function index()
     {
-        $PersonnelForm =PersonnelForm::with('employee')->get();
+        $PersonnelForm = PersonnelForm::with('employee')->get();
         $Employee = Employee::all();
-        return view('personalactionform.view')->with('personnelForm',$PersonnelForm)->with('employee',$Employee);
+        return view('personalactionform.view')
+            ->with('personnelForm', $PersonnelForm)
+            ->with('employee', $Employee);
     }
-        public function create($id){
-            $employeeInfo = Employee::findOrFail($id);
-           return view('personalactionform.form',compact('employeeInfo'));
-
-            
-        }
-    public function update(Request $request,$id){
+    public function create($id)
+    {
+        $employeeInfo = Employee::findOrFail($id);
+        return view('personalactionform.form', compact('employeeInfo'));
+    }
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'date_prepared' => 'required|date',
             'radioUpgradePosition' => 'required',
@@ -59,25 +60,23 @@ class PersonnelActionFormController extends Controller
             'rooms_for_improvements' => 'required',
             'manager_name' => 'required',
             'received' => 'required',
-            'approval_date' => 'required'
+            'approval_date' => 'required',
         ]);
 
         $personnelForm = PersonnelForm::findorFail($id);
 
-        if($personnelForm){
-
-            $positionMovements = PositionMovement::where('personnel_form_id',$personnelForm->id)->first();
-            $salaryAdjustment = SalaryAdjustment::where('personnel_form_id',$personnelForm->id)->first();
-            $benefitsAdjustment = BenefitAdjustment::where('personnel_form_id',$personnelForm->id)->first();
-            $generalRemark = GeneralRemark::where('personnel_form_id',$personnelForm->id)->first();
-            $approval = Approval::where('personnel_form_id',$personnelForm->id)->first();
+        if ($personnelForm) {
+            $positionMovements = PositionMovement::where('personnel_form_id', $personnelForm->id)->first();
+            $salaryAdjustment = SalaryAdjustment::where('personnel_form_id', $personnelForm->id)->first();
+            $benefitsAdjustment = BenefitAdjustment::where('personnel_form_id', $personnelForm->id)->first();
+            $generalRemark = GeneralRemark::where('personnel_form_id', $personnelForm->id)->first();
+            $approval = Approval::where('personnel_form_id', $personnelForm->id)->first();
 
             $personnelForm->update([
                 'date_prepared' => $request->date_prepared,
             ]);
         }
-        if($positionMovements)
-        {
+        if ($positionMovements) {
             $positionMovements->update([
                 'reason_for_upgrade' => $request->radioUpgradePosition,
                 'effective_date' => $request->radioEffectiveDatePosition,
@@ -93,8 +92,7 @@ class PersonnelActionFormController extends Controller
                 'employment_status_to' => $request->employment_status_to,
             ]);
         }
-        if($salaryAdjustment)
-        {
+        if ($salaryAdjustment) {
             $salaryAdjustment->update([
                 'reason_for_upgrade' => $request->radioUpgradeSalary,
                 'effective_date' => $request->radioEffectiveDateSalary,
@@ -102,8 +100,7 @@ class PersonnelActionFormController extends Controller
                 'basic_salary_to' => $request->basic_salary_to,
             ]);
         }
-        if($benefitsAdjustment)
-        {
+        if ($benefitsAdjustment) {
             $benefitsAdjustment->update([
                 'reason_for_upgrade' => $request->radioUpgradeCharges,
                 'effective_date' => $request->radioEffectiveDateCharges,
@@ -117,15 +114,13 @@ class PersonnelActionFormController extends Controller
                 'birthday_leave_to' => $request->birthday_leave_to,
             ]);
         }
-        if($generalRemark)
-        {
+        if ($generalRemark) {
             $generalRemark->update([
                 'remarkable_performance' => $request->remarkable_performance,
                 'rooms_for_improvements' => $request->rooms_for_improvements,
             ]);
         }
-        if($approval)
-        {
+        if ($approval) {
             $approval->update([
                 'manager_name' => $request->manager_name,
                 'received' => $request->received,
@@ -134,10 +129,10 @@ class PersonnelActionFormController extends Controller
         }
         session()->flash('success', 'Successfully Update Personnel Action Form');
         return redirect('/view-forms');
-
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $personnelForm = PersonnelForm::findOrFail($id);
         $personnelForm->delete();
 
@@ -145,13 +140,12 @@ class PersonnelActionFormController extends Controller
         return redirect('/view-forms');
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
             'date_prepared' => 'required|date',
             'radioUpgradePosition' => 'required',
-            'radioEffectiveDatePosition' => 'required',
+            'radioEffectiveDatePosition' => 'required|date',
             'job_title_from' => 'required',
             'job_title_to' => 'required',
             'job_level_from' => 'required',
@@ -163,11 +157,11 @@ class PersonnelActionFormController extends Controller
             'employment_status_from' => 'required',
             'employment_status_to' => 'required',
             'radioUpgradeSalary' => 'required',
-            'radioEffectiveDateSalary' => 'required',
+            'radioEffectiveDateSalary' => 'required|date',
             'basic_salary_from' => 'required|numeric',
             'basic_salary_to' => 'required|numeric',
             'radioUpgradeCharges' => 'required',
-            'radioEffectiveDateCharges' => 'required',
+            'radioEffectiveDateCharges' => 'required|date',
             'food_allowance_from' => 'required|numeric',
             'food_allowance_to' => 'required|numeric',
             'vacation_leave_from' => 'required|numeric',
@@ -180,86 +174,124 @@ class PersonnelActionFormController extends Controller
             'rooms_for_improvements' => 'required',
             'manager_name' => 'required',
             'received' => 'required',
-            'approval_date' => 'required'
+            'approval_date' => 'required',
         ]);
-        $employeeNumber = Employee::findOrFail($request->employee_number);
-        
-        if($employeeNumber){
-            $personnelForm = $employeeNumber->personnelForm()->create([
-                'date_prepared' => $request->date_prepared,
-            ]);
-            if($personnelForm){
-                $position = $personnelForm->positionMovements()->create([
-                    'reason_for_upgrade' => $request->radioUpgradePosition,
-                    'effective_date' => $request->radioEffectiveDatePosition,
-                    'job_title_from' => $request->job_title_from,
-                    'job_title_to' => $request->job_title_to,
-                    'job_level_from' => $request->job_level_from,
-                    'job_level_to' => $request->job_level_to,
-                    'department_from' => $request->department_from,
-                    'department_to' => $request->department_to,
-                    'supervisor_from' => $request->supervisor_from,
-                    'supervisor_to' => $request->supervisor_to,
-                    'employment_status_from' => $request->employment_status_from,
-                    'employment_status_to' => $request->employment_status_to,
+
+        if ($request) {
+            if ($request->radioUpgradePosition == 'Others' && $request->radioUpgradeSalary == 'Others' && $request->radioUpgradeCharges == 'Others') {
+                $request->validate([
+                    'otherUpgradeCharges' => 'required',
+                    'otherUpgradeSalary' => 'required',
+                    'otherUpgradePosition' => 'required',
                 ]);
-                if($position){
-                    $salaryAdjustment = $personnelForm->salaryAdjustments()->create([
-                        'reason_for_upgrade' => $request->radioUpgradeSalary,
-                        'effective_date' => $request->radioEffectiveDateSalary,
-                        'basic_salary_from' => $request->basic_salary_from,
-                        'basic_salary_to' => $request->basic_salary_to,
+                $request->radioUpgradePosition = 'Others ' . $request->otherUpgradePosition;
+                $request->radioUpgradeSalary = 'Others ' . $request->otherUpgradeSalary;
+                $request->radioUpgradeCharges = 'Others ' . $request->otherUpgradeCharges;
+            } elseif ($request->radioUpgradePosition == 'Others' && $request->radioUpgradeSalary == 'Others') {
+                $request->validate([
+                    'otherUpgradePosition' => 'required',
+                    'otherUpgradeSalary' => 'required',
+                ]);
+                $request->radioUpgradePosition = 'Others ' . $request->otherUpgradePosition;
+                $request->radioUpgradeSalary = 'Others ' . $request->otherUpgradeSalary;
+            } elseif ($request->radioUpgradeSalary == 'Others' && $request->radioUpgradeCharges == 'Others') {
+                $request->validate([
+                    'otherUpgradeSalary' => 'required',
+                    'otherUpgradeCharges' => 'required',
+                ]);
+                $request->radioUpgradeSalary = 'Others ' . $request->otherUpgradeSalary;
+                $request->radioUpgradeCharges = 'Others ' . $request->otherUpgradeCharges;
+            } elseif ($request->radioUpgradeCharges == 'Others' && $request->radioUpgradePosition == 'Others') {
+                $request->validate([
+                    'otherUpgradeCharges' => 'required',
+                    'otherUpgradePosition' => 'required',
+                ]);
+                $request->radioUpgradeCharges = 'Others ' . $request->otherUpgradeCharges;
+                $request->radioUpgradePosition = 'Others ' . $request->otherUpgradePosition;
+            } elseif ($request->radioUpgradePosition == 'Others') {
+                $request->validate([
+                    'otherUpgradePosition' => 'required',
+                ]);
+                $request->radioUpgradePosition = 'Others ' . $request->otherUpgradePosition;
+            } elseif ($request->radioUpgradeSalary == 'Others') {
+                $request->validate([
+                    'otherUpgradeSalary' => 'required',
+                ]);
+                $request->radioUpgradeSalary = 'Others ' . $request->otherUpgradeSalary;
+            } elseif ($request->radioUpgradeCharges == 'Others') {
+                $request->validate([
+                    'otherUpgradeCharges' => 'required',
+                ]);
+                $request->radioUpgradeCharges = 'Others ' . $request->otherUpgradeCharges;
+            }
+
+            $employeeNumber = Employee::findOrFail($request->employee_number);
+            if ($employeeNumber) {
+                $personnelForm = $employeeNumber->personnelForm()->create([
+                    'date_prepared' => $request->date_prepared,
+                ]);
+                if ($personnelForm) {
+                    $position = $personnelForm->positionMovements()->create([
+                        'reason_for_upgrade' => $request->radioUpgradePosition,
+                        'effective_date' => $request->radioEffectiveDatePosition,
+                        'job_title_from' => $request->job_title_from,
+                        'job_title_to' => $request->job_title_to,
+                        'job_level_from' => $request->job_level_from,
+                        'job_level_to' => $request->job_level_to,
+                        'department_from' => $request->department_from,
+                        'department_to' => $request->department_to,
+                        'supervisor_from' => $request->supervisor_from,
+                        'supervisor_to' => $request->supervisor_to,
+                        'employment_status_from' => $request->employment_status_from,
+                        'employment_status_to' => $request->employment_status_to,
                     ]);
-                    if($salaryAdjustment){
-                        $additionalCharge = $personnelForm->benefitAdjustments()->create([
-                            'reason_for_upgrade' => $request->radioUpgradeCharges,
-                            'effective_date' => $request->radioEffectiveDateCharges,
-                            'food_allowance_from' => $request->food_allowance_from,
-                            'food_allowance_to' => $request->food_allowance_to,
-                            'vacation_leave_from' => $request->vacation_leave_from,
-                            'vacation_leave_to' => $request->vacation_leave_to,
-                            'sick_leave_from' => $request->sick_leave_from,
-                            'sick_leave_to' => $request->sick_leave_to,
-                            'birthday_leave_from' => $request->birthday_leave_from,
-                            'birthday_leave_to' => $request->birthday_leave_to,
+                    if ($position) {
+                        $salaryAdjustment = $personnelForm->salaryAdjustments()->create([
+                            'reason_for_upgrade' => $request->radioUpgradeSalary,
+                            'effective_date' => $request->radioEffectiveDateSalary,
+                            'basic_salary_from' => $request->basic_salary_from,
+                            'basic_salary_to' => $request->basic_salary_to,
                         ]);
-                        if($additionalCharge){
-                            $generalRemark = $personnelForm->generalRemarks()->create([
-                                'remarkable_performance' => $request->input('remarkable_performance'),
-                                'rooms_for_improvements' => $request->input('rooms_for_improvements'),
+                        if ($salaryAdjustment) {
+                            $additionalCharge = $personnelForm->benefitAdjustments()->create([
+                                'reason_for_upgrade' => $request->radioUpgradeCharges,
+                                'effective_date' => $request->radioEffectiveDateCharges,
+                                'food_allowance_from' => $request->food_allowance_from,
+                                'food_allowance_to' => $request->food_allowance_to,
+                                'vacation_leave_from' => $request->vacation_leave_from,
+                                'vacation_leave_to' => $request->vacation_leave_to,
+                                'sick_leave_from' => $request->sick_leave_from,
+                                'sick_leave_to' => $request->sick_leave_to,
+                                'birthday_leave_from' => $request->birthday_leave_from,
+                                'birthday_leave_to' => $request->birthday_leave_to,
                             ]);
-                            if($generalRemark){
-                                $approval = $personnelForm->approvals()->create([
-                                    'manager_name' => $request->manager_name,
-                                    'received' => $request->received,
-                                    'approval_date' => $request->approval_date,
+                            if ($additionalCharge) {
+                                $generalRemark = $personnelForm->generalRemarks()->create([
+                                    'remarkable_performance' => $request->input('remarkable_performance'),
+                                    'rooms_for_improvements' => $request->input('rooms_for_improvements'),
                                 ]);
-                                if($generalRemark){
-                                    session()->flash('success', 'Successfully Submit Personnel Action Form');
-                                    return redirect('/view-forms');
+                                if ($generalRemark) {
+                                    $approval = $personnelForm->approvals()->create([
+                                        'manager_name' => $request->manager_name,
+                                        'received' => $request->received,
+                                        'approval_date' => $request->approval_date,
+                                    ]);
+                                    if ($generalRemark) {
+                                        session()->flash('success', 'Successfully Submit Personnel Action Form');
+                                        return redirect('/view-forms');
+                                    }
                                 }
-                                
                             }
                         }
                     }
                 }
+            } else {
             }
         }
-        else
-        {
-            session()->flash('success', 'Error');
-                                    return redirect('/view-forms');
-        }
     }
-    public function show($id){
-        $personnelForm = PersonnelForm::with([
-            'positionMovements',
-            'salaryAdjustments',
-            'benefitAdjustments',
-            'generalRemarks',
-            'approvals',
-            'employee',
-        ])->find($id);
+    public function show($id)
+    {
+        $personnelForm = PersonnelForm::with(['positionMovements', 'salaryAdjustments', 'benefitAdjustments', 'generalRemarks', 'approvals', 'employee'])->find($id);
 
         return view('personalactionform.show', compact('personnelForm'));
     }

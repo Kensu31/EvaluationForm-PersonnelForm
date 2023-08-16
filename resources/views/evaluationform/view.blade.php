@@ -27,7 +27,7 @@
                             <button data-bs-toggle="modal" data-bs-target="#selectEmployee" class="btn btn-success mt-2"><i
                                     class="fas fa-plus mx-2"></i>Create
                                 Form</button>
-                            <a href="/generate-blank-form" class="btn btn-primary mt-2"><i
+                            <a href="{{ route('generate.pdf') }}" class="btn btn-secondary mt-2"><i
                                     class="fas fa-print mx-2"></i>Print Form</a>
                         </div>
                     </div>
@@ -36,17 +36,22 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="table py-3">
-                                <th class="col-6 py-3">Title</th>
-                                <th class="col-3 py-3">Date Submit</th>
+                                <th class="col-3 py-3 text-center">Title</th>
+                                <th class="col-2 py-3 text-center">Date Submit</th>
+                                <th class="col-2 py-3 text-center">Overall Rating</th>
+                                <th class="col-2 py-3 text-center">Equivalent</th>
                                 <th class="col-3 py-3 text-center">Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($records as $record)
                                     <tr class="text-middle">
-                                        <td class="col align-middle">Evalaution Form for
+                                        <td class="col align-middle text-center">Evalaution for
                                             {{ $record->employee->last_name }} {{ $record->employee->first_name }}
                                         </td>
-                                        <td class="col align-middle">{{ $record->created_at }}</td>
+                                        <td class="col align-middle text-center">{{ $record->created_at->format('Y-m-d') }}
+                                        </td>
+                                        <td class="col align-middle text-center">{{ $record->rating }}</td>
+                                        <td class="col align-middle text-center">{{ $record->equivalent }}</td>
                                         <td class="col text-center">
                                             <button class="btn btn-success  px-2 text-center"
                                                 onclick="view({{ $record->id }})">
@@ -56,6 +61,10 @@
                                                 onclick="confirmDelete({{ $record->id }})">
                                                 <i class="fas fa-trash px-1"></i>
                                             </button>
+                                            <a href="/generate-print/{{ $record->id }}"
+                                                class="btn btn-secondary  px-2 text-center" target="_blank">
+                                                <i class="fas fa-print px-1"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -65,6 +74,27 @@
                             function view($id) {
 
                                 window.location.href = '/show-evaluation-form/' + $id;
+                            }
+
+                            function generatePDF(Event) {
+                                var phpScriptUrl = 'evaluationformblank.php'
+
+                                fetch(phpScriptUrl)
+                                    .then(response => response.blob())
+                                    .then(pdfBlob => {
+                                        var pdfUrl = URL.createObjectURL(pdfBlob);
+                                        var link = document.createElement('a');
+                                        link.href = pdfUrl;
+                                        link.download = 'child-webpage.pdf';
+                                        link.style.display = 'none';
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        document.body.removeChild(link);
+                                        URL.revokeObjectURL(pdfUrl);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error generating PDF:', error);
+                                    });
                             }
 
                             function confirmDelete($id) {

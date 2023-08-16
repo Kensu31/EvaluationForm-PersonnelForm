@@ -12,7 +12,7 @@ class CreateSalaryAdjustmentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('personnel_form_id');
             $table->string('reason_for_upgrade');
-            $table->string('effective_date');
+            $table->date('effective_date');
             $table->decimal('basic_salary_from', 10, 2);
             $table->decimal('basic_salary_to', 10, 2);
             // Add other columns as needed

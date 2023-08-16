@@ -12,6 +12,7 @@ class EvaluationForm extends Model
         'reviewer',
         'review_period',
         'rating',
+        'equivalent'
 
     ];
     public function evaluationFormAnswer(){

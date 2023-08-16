@@ -12,5 +12,6 @@ class EmployeeController extends Controller
     {
         $employee = Employee::all();
         return view('index')->with('employee',$employee);
+        
     }
 }

@@ -32,76 +32,66 @@
                 flex-wrap: wrap !important;
             }
         }
+
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+            /* Optional: Remove any border-radius to make it fully flat */
+            padding: 5px 0;
+            /* Optional: Add some padding for visual separation */
+        }
+
+        .underline-input:focus {
+            border-color: #ccc;
+            box-shadow: none;
+            background-color: #f0f0f0;
+            transition: background-color 0.2s ease-in-out;
+        }
     </style>
     <div class="container-fluid">
         <div class="card m-auto mt-5 mb-5 border p-3 rounded rounded-4" style="width:70%">
-            <div class="card-tit">
-                <h1 class="m-3 fst-italic">Employee Evaluation Form</h1>
+            <div class="card-title border-bottom text-center">
+                <h1 class="m-3 fw-bold">Employee Evaluation Form</h1>
             </div>
             <div class="card-body">
                 <form action="/submit-evaluation-form" method="POST" class="row g-3 pb-4">
                     @csrf
-                    <div class="col-md-10">
-                        <h4 class="fw-bold">I. EMPLOYEE INFORMATION</h4>
+                    <div class="col-md-10 mt-5">
+                        <h5 class="fw-bold">I. EMPLOYEE INFORMATION</h5>
                     </div>
-                    <div class="row px-5">
-                        <div class="col-md-3">
-                            <label for="employee_name" class="form-label">Employee name:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('employee_name')
-                                border-danger
-                            @else
-                            border-dark
-                            @enderror"
-                                name="employee_name"
-                                value="{{ $evaluationForm->employee->last_name }} {{ $evaluationForm->employee->first_name }}"
-                                readonly />
-                            @error('employee_name')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                    <div class="row px-5 py-2">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="employee_name" class="form-label me-3 mb-0 align-middle">Employee name:</label>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold  me-3 mb-0 align-middle">{{ $evaluationForm->employee->last_name }}
+                                    {{ $evaluationForm->employee->first_name }}</h6>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <label for="job_title" class="form-label">Job Title:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('job_title')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="job_title" value="{{ $evaluationForm->employee->position }}" readonly>
-                            @error('job_title')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="job_title" class="form-label me-3 mb-0 align-middle">Job Title:</label>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold  me-3 mb-0 align-middle">{{ $evaluationForm->employee->position }}</h6>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <label for="reviewer" class="form-label">Supervisor/Reviewer:</label>
-                            <input type="text"
-                                class="form-control border shadow-sm @error('reviewer')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="reviewer" value="{{ $evaluationForm->reviewer }}" readonly>
-                            @error('reviewer')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label for="inputAddress" class="form-label">Review Period:</label>
-                            <input type="date"
-                                class="form-control border shadow-sm  @error('review_period')
-                            border-danger
-                        @else
-                        border-dark
-                        @enderror"
-                                name="review_period" value="{{ $evaluationForm->review_period }}" readonly>
-                            @error('review_period')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
                     </div>
-                    <div class="col-md-10 mt-2 ">
+                    <div class="row px-5 py-2">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="reviewer" class="form-label me-3 mb-0 align-middle">Supervisor/Reviewer:</label>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold  me-3 mb-0 align-middle">{{ $evaluationForm->reviewer }}</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <label for="inputAddress" class="form-label me-3 mb-0 align-middle">Review Period:</label>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold  me-3 mb-0 align-middle">
+                                    {{ $evaluationForm->review_period }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10
+                                    mt-2 ">
                         <h4 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h4>
                     </div>
                     <table class="table table-striped border border-dark shadow-sm ">
@@ -115,7 +105,8 @@
                             <tr class="form-group">
                                 <td class="col-md-4">
                                     <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Quality of
-                                            Work:</span><br>Work is completed accurately(few or no errors), efficiently
+                                            Work:</span><br>Work is completed accurately(few or no errors),
+                                        efficiently
                                         and within deadlines with minimal supervision</p>
                                     @error('Quality_Work')
                                         <small class="text-danger">{{ $message }}</small>
@@ -157,7 +148,8 @@
                             <tr>
                                 <td class="col-md-4 ">
                                     <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Attendance &
-                                            Punctuality:</span><br>Reports for work on time, provides advance notice of
+                                            Punctuality:</span><br>Reports for work on time, provides advance notice
+                                        of
                                         need for absence</p>
                                     @error('Attendance_Punctuality')
                                         <small class="text-danger">{{ $message }}</small>
@@ -242,7 +234,8 @@
                             <tr>
                                 <td class="col-md-4 ">
                                     <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Communication
-                                            Skills:</span><br>Written and oral communnications are clear, organized and
+                                            Skills:</span><br>Written and oral communnications are clear, organized
+                                        and
                                         effective; listens and comprehends well</p>
                                     @error('Communication')
                                         <small class="text-danger">{{ $message }}</small>
@@ -289,7 +282,8 @@
                                 <td class="col-md-4 ">
                                     <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Judgment &
                                             Decision-making:</span><br>Makes thoughtful, well-reasoned decisions;
-                                        exercises good judgment, resourcefulness and creativity in problem-solving</p>
+                                        exercises good judgment, resourcefulness and creativity in problem-solving
+                                    </p>
                                     @error('Judgment')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -334,8 +328,10 @@
                             <tr>
                                 <td class="col-md-4 ">
                                     <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Initiative &
-                                            flexibility:</span><br>Demonstrates initiative, often seeking out additional
-                                        responsibility; identifies problems and solutions; thrives on new challenges and
+                                            flexibility:</span><br>Demonstrates initiative, often seeking out
+                                        additional
+                                        responsibility; identifies problems and solutions; thrives on new challenges
+                                        and
                                         adjust to unexpected changes</p>
                                     @error('Initiative')
                                         <small class="text-danger">{{ $message }}</small>
@@ -395,7 +391,9 @@
                                 <tr>
                                     <td class="col-md-4 ">
                                         <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Knowledge of
-                                                Position:</span><br>Possessees required skills, knowledge, and abilities to
+                                                Position:</span><br>Possessees required skills, knowledge, and
+                                            abilities
+                                            to
                                             compentently perform the job</p>
                                         @error('Knowledge')
                                             <small class="text-danger">{{ $message }}</small>
@@ -418,7 +416,8 @@
                                             <input class="form-check-input" type="radio"
                                                 @if ($evaluationForm->evaluationFormAnswer->Knowledge == 2) checked @endif name="Knowledge"
                                                 value="2">
-                                            <label class="form-check-label" for="">Needs improvements</label>
+                                            <label class="form-check-label" for="">Needs
+                                                improvements</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio"
@@ -441,7 +440,9 @@
                                 <tr>
                                     <td class="col-md-4 ">
                                         <p class="p-3 fst-italic fs-7"><span class="fw-bold fs-5">Training &
-                                                Development:</span><br>Continually seeks ways to strengthen performance and
+                                                Development:</span><br>Continually seeks ways to strengthen
+                                            performance
+                                            and
                                             regularly monitors new developments in field of work</p>
                                         @error('Training')
                                             <small class="text-danger">{{ $message }}</small>
@@ -464,7 +465,8 @@
                                             <input class="form-check-input" type="radio"
                                                 @if ($evaluationForm->evaluationFormAnswer->Training == 2) checked @endif name="Training"
                                                 value="2">
-                                            <label class="form-check-label" for="">Needs improvements</label>
+                                            <label class="form-check-label" for="">Needs
+                                                improvements</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio"
@@ -490,18 +492,11 @@
                         <h4 class="fw-bold">IV. PERFORMANCE GOALS</h4>
                         <div class="container">
                             <div class="mb-3">
-                                <label for="exampleTextarea" class="form-label">Set objectives and outline steps to
+                                <label for="exampleTextarea" class="form-label">Set objectives and outline steps
+                                    to
                                     improve in problem areas or further employee developement.</label>
-                                <textarea
-                                    class="form-control border shadow-sm @error('Performance')
-                                border-danger
-                                @else
-                                border-dark
-                                @enderror"
-                                    name="Performance" placeholder="Enter text here" rows="5" style="resize: none" readonly>{{ $evaluationForm->evaluationFormAnswer->Performance }}</textarea>
-                                @error('Performance')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                <p class="fw-bold">{{ $evaluationForm->evaluationFormAnswer->Performance }}</p>
+
                             </div>
                         </div>
                     </div>
@@ -510,16 +505,14 @@
                         <div class="container">
                             <div class="mb-3">
                                 <label for="exampleTextarea" class="form-label">Comments</label>
-                                <textarea class="form-control border border-dark shadow-sm" name="Comments" placeholder="Enter comment here"
-                                    rows="5" style="resize:none" readonly>{{ $evaluationForm->evaluationFormAnswer->Comments }}</textarea>
+                                <p class="fw-bold"> {{ $evaluationForm->evaluationFormAnswer->Comments }}</p>
+
                             </div>
                         </div>
                         <div class="text-end">
-                            <a href="/generate-print/{{ $evaluationForm->id }}" target="_blank"
-                                class="btn btn-success px-2 py-2  mt-2 shadow" id="btnprint"> <i
-                                    class="fas fa-print px-1" style="font-size:15px"></i> Print</a>
                             <button type="" class="btn btn-primary fs-6 px-4 py-2  mt-2 shadow" id="btncancel"> <i
-                                    class="fas fa-door-open px-1" style="font-size:15px"></i> Back</button>
+                                    class="fas fa-door-open px-1" style="font-size:15px"></i>
+                                Back</button>
                         </div>
                 </form>
             </div>

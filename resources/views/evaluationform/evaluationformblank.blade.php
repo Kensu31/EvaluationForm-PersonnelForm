@@ -4,12 +4,15 @@
 @endsection
 @section('content')
     <div class="container-fluid align-middle">
-        <div class="container-fluid">
-            <img src="https://dummyimage.com/50x50/000/fff" class="col img-thumbnail" alt="" width="">
-            <h3 class="d-inline-flex">Employee's Evaluation Form</h3>
+
+        <div class="container text-center m-auto">
+            <img src="https://dummyimage.com/50x50/000/fff" class="col img" alt="" width="">
+            <h3 class="fw-bold">EMPLOYEE EVALUATION FORM</h3>
+        </div>
+        <div class="row container m-auto">
+            <h5 class="fw-bold">I. EMPLOYEE INFORMATION</h5>
         </div>
         <div class="container-fluid mt-2">
-
             <div class="row container m-auto">
                 <div class="col-3 text-end">
                     <p> <strong> Employee's Name:</strong></p>
@@ -39,11 +42,14 @@
                 </div>
             </div>
         </div>
+        <div class="row container m-auto">
+            <h5 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h5>
+        </div>
         <div class="container mt-3 m-auto" style="font-size:13px!important;">
             <table class="table table-striped border border-dark shadow-sm ">
                 <thead>
                     <tr class="table-dark">
-                        <th class="col-md-5 text-center ">PERFORMANCE CATEGORY</th>
+                        <th class="col-md-4 text-center ">PERFORMANCE CATEGORY</th>
                         <th class="col-md-8 text-center " colspan="4">RATING</th>
                     </tr>
                 </thead>
@@ -106,7 +112,6 @@
                         </td>
 
                     </tr>
-
                     <tr>
                         <td class="col-md-4 ">
                             <p class=" fst-italic fs-7"><span
@@ -194,7 +199,6 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr>
                         <td class="col-md-4 ">
                             <p class=" fst-italic fs-7"><span class="fw-bold">Initiative &
@@ -224,6 +228,19 @@
                             </div>
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <div class="row container m-auto">
+                <h5 class="fw-bold">III. JOB-SPECIFIC PERFORMANCE CRITERIA</h5>
+            </div>
+            <table class="table table-striped border border-dark shadow-sm">
+                <thead>
+                    <tr class="table-dark">
+                        <th class="col-md-4 text-center ">PERFORMANCE CATEGORY</th>
+                        <th class="col-md-8 text-center " colspan="4">RATING</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td class="col-md-4 ">
                             <p class=" fst-italic fs-7"><span class="fw-bold">Knowledge of
@@ -284,7 +301,9 @@
                 </tbody>
             </table>
             <div class="container mt-2">
-                <h4 class="fw-bold"> PERFORMANCE GOALS</h4>
+                <div class="row container m-auto">
+                    <h5 class="fw-bold">IV. PERFORMANCE GOALS</h5>
+                </div>
                 <div class="container">
                     <div class="mb-3">
                         <label for="exampleTextarea" class="form-label">Set objectives and outline steps to
@@ -295,7 +314,7 @@
                         @else
                         border-dark
                         @enderror"
-                            name="Performance" rows="5" style="resize: none"></textarea>
+                            name="Performance" rows="4" style="resize: none"></textarea>
                         @error('Performance')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -303,12 +322,71 @@
                 </div>
             </div>
             <div class="container mt-3">
-                <h4 class="fw-bold">EMPLOYEE COMMENTS(OPTIONAL)</h4>
+                <div class="row container m-auto">
+                    <h5 class="fw-bold">V.OVERALL RATING</h5>
+                </div>
+                <table class="table table-striped table-bordered border border-dark shadow-sm text-center">
+                    <tbody>
+                        <tr>
+                            <td class="col-3">
+                                <input class="form-check-input" type="radio" name="Knowledge" value="4">
+                                <label class="form-check-label fw-bold">Exceeds expectations</label>
+                                <small>Employee Consistently performs at high level that exceeds expectations</small>
+                            </td>
+                            <td class="col-3">
+                                <input class="form-check-input" type="radio" name="Knowledge" value="3">
+                                <label class="form-check-label fw-bold">Meets expectations</label>
+                                <small>Employee satisfies all essential job requirements; may exceed expectations
+                                    periodicallt;
+                                    demonstrates likelihood of eventually exceeding expectations</small>
+                            </td>
+                            <td class="col-3">
+                                <input class="form-check-input" type="radio" name="Knowledge" value="2">
+                                <label class="form-check-label fw-bold" for="">Needs improvements</label>
+                                <small>Employee consistently performs below required standards/expectations for the
+                                    position;
+                                    training or other action is necessary to correct performance</small>
+
+                            </td>
+                            <td class="col-3">
+                                <input class="form-check-input" type="radio" name="Knowledge" value="1">
+                                <label class="form-check-label fw-bold" for="">Unacceptable</label>
+                                <small>Employee is unable or unwilling to perform required duties according to company
+                                    standards; immediate improvement must be demonstrated</small>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container mt-3">
+                <div class="row container m-auto">
+                    <h5 class="fw-bold">VI. EMPLOYEE COMMENTS(OPTIONAL)</h5>
+                </div>
                 <div class="container">
                     <div class="mb-3">
                         <label for="exampleTextarea" class="form-label">Comments</label>
-                        <textarea class="form-control border border-dark shadow-sm" name="Comments" rows="5" style="resize:none"></textarea>
+                        <textarea class="form-control border border-dark shadow-sm" name="Comments" rows="3" style="resize:none"></textarea>
                     </div>
+                </div>
+            </div>
+            <div class="container mt-3">
+                <div class="row container m-auto">
+                    <h5 class="fw-bold">VII. ACKNOWLEDGEMENT</h5>
+                </div>
+                <div class="row container m-auto text-center">
+                    <p>I Acknowledge that I have had the opportunity to discuss this performance evaluation with my
+                        manager/supervisor and i have received a copy of this evaluation.</p>
+                </div>
+                <div class="row container m-auto">
+                    <div class="col">Employee Signature:</div>
+                    <div class="col text-center">Date:</div>
+                </div>
+                <div class="row container m-auto mt-2">
+                    <div class="col">Reviewer Signature:</div>
+                    <div class="col text-center">Date:</div>
                 </div>
             </div>
         </div>

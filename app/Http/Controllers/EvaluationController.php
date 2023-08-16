@@ -37,9 +37,6 @@ class EvaluationController extends Controller
         session()->flash('success', 'Successfully Delete Evaluation Form');
         return redirect('/view-evaluation-form');
     }
-
-
-
     public function store(Request $request)
     {
 
@@ -59,22 +56,42 @@ class EvaluationController extends Controller
             'Comments' => 'nullable',
         ]);
         $overallscore = 0;
-        $ratingQuality = $validateData['Quality_Work'];
-        $ratingAttendance = $validateData['Attendance_Punctuality'];
-        $ratingReliability = $validateData['Reliability'];
-        $ratingCommunication = $validateData['Communication'];
-        $ratingJudgment = $validateData['Judgment'];
-        $ratingInitiative = $validateData['Initiative'];
-        $ratingKnowledge = $validateData['Knowledge'];
-        $ratingTraining = $validateData['Training'];
-        $overallscore = ($ratingQuality + $ratingAttendance + $ratingReliability + $ratingCommunication + $ratingJudgment + $ratingInitiative + $ratingKnowledge + $ratingTraining) / 8;
+        $coreValues = 0;
+        $jobperformance = 0;
+
+        $ratingQuality = $validateData['Quality_Work']*0.3;
+        $ratingAttendance = $validateData['Attendance_Punctuality']*0.15;
+        $ratingReliability = $validateData['Reliability']*0.20;
+        $ratingCommunication = $validateData['Communication']*0.15;
+        $ratingJudgment = $validateData['Judgment']*0.15;
+        $ratingInitiative = $validateData['Initiative']*0.15;
+        $ratingKnowledge = $validateData['Knowledge']*0.6;
+        $ratingTraining = $validateData['Training']*0.4;
+
+        $coreValues = $ratingQuality+$ratingAttendance+$ratingReliability+$ratingCommunication+$ratingJudgment+$ratingInitiative;
+        $jobperformance = $ratingKnowledge+$ratingTraining;
+        $overallscore = ($coreValues+$jobperformance)/2;
+
+        if($overallscore>=1&&$overallscore<2){
+            $equivalent = 'Unacceptable';
+        }
+        elseif($overallscore<3&&$overallscore>=2)
+        {
+            $equivalent = 'Needs Improvements';
+        }elseif($overallscore<4&&$overallscore>=3){
+            $equivalent = 'Meets Expectation';
+        }elseif($overallscore>=4)
+        {
+            $equivalent = 'Exceeds Expectation';
+        }
          $employeeInfo = Employee::findOrFail($request->employee_id);
          if($employeeInfo)
          {
             $evaluationForm = $employeeInfo->evaluationForm()->create([
                         'reviewer' => $request->reviewer,
                         'review_period' => $request->review_period,
-                        'rating' => $overallscore
+                        'rating' => $overallscore,
+                        'equivalent'=>$equivalent
                     ]);
             if($evaluationForm)
             {
@@ -97,8 +114,6 @@ class EvaluationController extends Controller
                         }
             }
          }
-        
-        
     }
     public function print($id){
         $evaluationForm = EvaluationForm::with(
