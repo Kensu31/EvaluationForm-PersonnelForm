@@ -32,6 +32,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        
+                    </div>
+                </div>
                 <div class="card-body px-5 mt-4">
                     <div class="table-responsive">
                         <table class="table">
@@ -118,7 +123,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="selectEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade h-50" id="selectEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="selectEmployeeLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

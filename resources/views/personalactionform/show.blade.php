@@ -125,8 +125,8 @@
                                 <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                                 <div class="col-4">
                                     <input type="date" class="form-control underline-input px-2"
-                                        name="radioEffectiveDatePosition" id="radioEffectiveDatePosition"
-                                        value="{{ old('radioEffectiveDatePosition', $personnelForm->positionMovements->effective_date) }}">
+                                        name="effectiveDatePosition" id="effectiveDatePosition"
+                                        value="{{ old('effectiveDatePosition', $personnelForm->positionMovements->effective_date) }}">
                                 </div>
                             </div>
                             <div class="row g-2">
@@ -134,40 +134,41 @@
                                     <div class="col-3">
                                         <input class="form-check-input" type="radio" name="radioUpgradePosition"
                                             value="Performance Review"
-                                            {{ old('radioUpgradePosition') == 'Performance Review' ? 'checked' : '' }}>
+                                            {{ $personnelForm->positionMovements->reason_for_upgrade == 'Performance Review' ? 'checked' : '' }}>
                                         <label class="form-check-label">Performance Review</label>
                                     </div>
                                     <div class="col-3">
                                         <input class="form-check-input" type="radio" name="radioUpgradePosition"
                                             value="Promotion"
-                                            {{ old('radioUpgradePosition') == 'Promotion' ? 'checked' : '' }}>
+                                            {{ $personnelForm->positionMovements->reason_for_upgrade == 'Promotion' ? 'checked' : '' }}>
                                         <label class="form-check-label">Promotion</label>
                                     </div>
                                     <div class="col-3">
                                         <input class="form-check-input" type="radio" name="radioUpgradePosition"
                                             value="Lateral Transfer"
-                                            {{ old('radioUpgradePosition') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                            {{ $personnelForm->positionMovements->reason_for_upgrade == 'Lateral Transfer' ? 'checked' : '' }}>
                                         <label class="form-check-label">Lateral Transfer</label>
                                     </div>
                                     <div class="col-3">
                                         <input class="form-check-input" type="radio" name="radioUpgradePosition"
                                             value="Others"
-                                            {{ Str::startsWith($personnelForm->positionMovements->radioUpgradePosition ?? '', 'Others') ? 'checked' : '' }}>
+                                            {{ explode(' ', $personnelForm->positionMovements->reason_for_upgrade)[0] == 'Others' ? 'checked' : '' }}>
                                         <label class="form-check-label">Others</label>
                                     </div>
                                 </div>
                             </div>
-                            <p>s{{ Str::startsWith($personnelForm->positionMovements->radioUpgradePosition) }}</p>
+
                             <div class="form-group other-input mt-2" id="otherUpgradePosition" style="display: none;">
-                                <input type="text" class="form-control" name="otherUpgradePosition"
-                                    placeholder="Other Reason">
+                                <input type="text" class="form-control focus-ring focus-ring-light"
+                                    name="otherUpgradePosition" placeholder="Other Reason"
+                                    value="{{ explode(' ', $personnelForm->positionMovements->reason_for_upgrade)[0] == 'Others' ? explode(' ', $personnelForm->positionMovements->reason_for_upgrade)[1] : '' }}" />
                             </div>
                         </div>
                         <div class="row">
                             @error('radioUpgradePosition')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDatePosition')
+                            @error('effectiveDatePosition')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -356,8 +357,8 @@
                             <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                             <div class="col-4">
                                 <input type="date" class="form-control underline-input px-2"
-                                    name="radioEffectiveDateSalary" id="radioEffectiveDateSalary"
-                                    value="{{ old('radioEffectiveDateSalary', $personnelForm->salaryAdjustments->effective_date) }}">
+                                    name="effectiveDateSalary" id="effectiveDateSalary"
+                                    value="{{ old('effectiveDateSalary', $personnelForm->salaryAdjustments->effective_date) }}">
                             </div>
                         </div>
                         <div class="row g-2">
@@ -365,36 +366,39 @@
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
                                         value="Performance Review"
-                                        {{ old('radioUpgradeSalary') == 'Performance Review' ? 'checked' : '' }}>
+                                        {{ $personnelForm->salaryAdjustments->reason_for_upgrade == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Promotion" {{ old('radioUpgradeSalary') == 'Promotion' ? 'checked' : '' }}>
+                                        value="Promotion"
+                                        {{ $personnelForm->salaryAdjustments->reason_for_upgrade == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
                                         value="Lateral Transfer"
-                                        {{ old('radioUpgradeSalary') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        {{ $personnelForm->salaryAdjustments->reason_for_upgrade == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
                                     <input class="form-check-input" type="radio" name="radioUpgradeSalary"
-                                        value="Others" {{ old('radioUpgradeSalary') == 'Others' ? 'checked' : '' }}>
+                                        value="Others"
+                                        {{ explode(' ', $personnelForm->salaryAdjustments->reason_for_upgrade)[0] == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group other-input mt-2" id="otherUpgradeSalary" style="display: none;">
-                            <input type="text" class="form-control" name="otherUpgradeSalary"
-                                placeholder="Other Reason">
+                        <div class="form-group other-input mt-2 " id="otherUpgradeSalary" style="display: none;">
+                            <input type="text" class="form-control focus-ring focus-ring-light"
+                                name="otherUpgradeSalary" placeholder="Other Reason"
+                                value="{{ explode(' ', $personnelForm->salaryAdjustments->reason_for_upgrade)[0] == 'Others' ? explode(' ', $personnelForm->salaryAdjustments->reason_for_upgrade)[1] : '' }}">
                         </div>
                         <div class="row">
                             @error('radioUpgradeSalary')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDateSalary')
+                            @error('effectiveDateSalary')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -405,7 +409,7 @@
                             <div class="row g-2">
                                 <div class="col-6">
                                     <input type="text"
-                                        class="form-control underline-input px-2   @error('basic_salary_from')
+                                        class="form-control px-2 underline-input   @error('basic_salary_from')
                                     border-danger
                                     @else
                                     border-dark
@@ -445,46 +449,48 @@
                             <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                             <div class="col-4">
                                 <input type="date" class="form-control underline-input px-2"
-                                    name="radioEffectiveDateCharges" id="radioEffectiveDateCharges"
-                                    value="{{ old('radioEffectiveDateCharges', $personnelForm->benefitAdjustments->effective_date) }}">
+                                    name="effectiveDateBenefits" id="effectiveDateBenefits"
+                                    value="{{ old('effectiveDateBenefits', $personnelForm->benefitAdjustments->effective_date) }}">
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Performance Review"
-                                        {{ old('radioUpgradeCharges') == 'Performance Review' ? 'checked' : '' }}>
+                                        {{ $personnelForm->benefitAdjustments->reason_for_upgrade == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Promotion"
-                                        {{ old('radioUpgradeCharges') == 'Promotion' ? 'checked' : '' }}>
+                                        {{ $personnelForm->benefitAdjustments->reason_for_upgrade == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Lateral Transfer"
-                                        {{ old('radioUpgradeCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        {{ $personnelForm->benefitAdjustments->reason_for_upgrade == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Others" {{ old('radioUpgradeCharges') == 'Others' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
+                                        value="Others"
+                                        {{ explode(' ', $personnelForm->benefitAdjustments->reason_for_upgrade)[0] == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group other-input mt-2" id="otherUpgradeCharges" style="display:none;">
-                            <input type="text" class="form-control" name="otherUpgradeCharges"
-                                placeholder="Other Reason">
+                            <input type="text" class="form-control focus-ring focus-ring-light"
+                                name="otherUpgradeCharges" placeholder="Other Reason"
+                                value="{{ explode(' ', $personnelForm->benefitAdjustments->reason_for_upgrade)[0] == 'Others' ? explode(' ', $personnelForm->benefitAdjustments->reason_for_upgrade)[1] : '' }}">
                         </div>
                         <div class="row">
                             @error('radioUpgradeCharges')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDateCharges')
+                            @error('effectiveDateBenefits')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -767,6 +773,60 @@
 
         {{-- Script --}}
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const radioUpgradePosition = document.querySelectorAll('input[name="radioUpgradePosition"]');
+                const radioUpgradeCharges = document.querySelectorAll('input[name="radioUpgradeBenefits"]');
+                const radioUpgradeSalary = document.querySelectorAll('input[name="radioUpgradeSalary"]');
+
+                const otherUpgradePosition = document.getElementById("otherUpgradePosition");
+                const otherUpgradeSalary = document.getElementById("otherUpgradeSalary");
+                const otherUpgradeCharges = document.getElementById("otherUpgradeCharges");
+                const fieldUpgradePosition = document.getElementsByName("otherUpgradePosition")[0];
+                const fieldUpgradeSalary = document.getElementsByName("otherUpgradeSalary")[0];
+                const fieldUpgradeCharges = document.getElementsByName("otherUpgradeCharges")[0];
+
+
+                function toggleOtherInput() {
+                    if (radioUpgradePosition[3].checked) {
+                        otherUpgradePosition.style.display = "block";
+                    } else {
+                        otherUpgradePosition.style.display = "none";
+                    }
+                }
+
+                function toggleOtherInputSalary() {
+                    if (radioUpgradeSalary[3].checked) {
+                        otherUpgradeSalary.style.display = "block";
+
+                    } else {
+                        otherUpgradeSalary.style.display = "none";
+                    }
+                }
+
+                function toggleOtherInputCharges() {
+                    if (radioUpgradeCharges[3].checked) {
+                        otherUpgradeCharges.style.display = "block";
+
+                    } else {
+                        otherUpgradeCharges.style.display = "none";
+                    }
+                }
+
+                radioUpgradePosition.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInput);
+                });
+                radioUpgradeSalary.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInputSalary);
+                });
+                radioUpgradeCharges.forEach(function(radio) {
+                    radio.addEventListener("change", toggleOtherInputCharges);
+                });
+
+                toggleOtherInput();
+                toggleOtherInputSalary();
+                toggleOtherInputCharges();
+            });
+
             function onlyDigits(event) {
                 const charCode = event.charCode || event.keyCode;
                 if ((charCode < 48 || charCode > 57) && charCode !== 8 && charCode !== 46) {

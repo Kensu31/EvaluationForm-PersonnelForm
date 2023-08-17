@@ -21,38 +21,42 @@
         <div class="container-fluid mt-2">
             <div class="row container m-auto">
                 <div class="col-3 text-end">
-                    <p> <strong> Employee's Name:</strong></p>
+                    <p> Employee's Name:</p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform: uppercase">{{ $evaluationForm->employee->last_name }}
-                        {{ $evaluationForm->employee->first_name }}</span>
+                    <strong> <span style="text-transform: uppercase">{{ $evaluationForm->employee->last_name }}
+                            {{ $evaluationForm->employee->first_name }}</span> </strong>
                 </div>
                 <div class="col-3 text-end">
-                    <p> <strong> Job Title: </strong></p>
+                    <p> Job Title: </p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->employee->position }}</span>
+                    <strong> <span style="text-transform:uppercase">{{ $evaluationForm->employee->position }}</span>
+                    </strong>
                 </div>
             </div>
             <div class="row container m-auto">
                 <div class="col-3 text-end">
-                    <p> <strong> Supervisor/Reviewer:</strong></p>
+                    <p> Supervisor/Reviewer:</p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->reviewer }}</span>
+                    <strong> <span style="text-transform:uppercase">{{ $evaluationForm->reviewer }}</span> </strong>
                 </div>
                 <div class="col-3 text-end">
-                    <p> <strong> Review Period: </strong></p>
+                    <p> Review Period: </p>
                 </div>
                 <div class="col-3">
-                    <span style="text-transform:uppercase">{{ $evaluationForm->review_period }}</span>
+                    <strong> <span style="text-transform:uppercase">{{ $evaluationForm->review_period }}</span> </strong>
                 </div>
             </div>
         </div>
         <div class="row container m-auto">
             <h5 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h5>
+            <p class="fw-bold" style="font-size: 12px">Legend: Exceeds expectations = 4, Meets expectations = 3, Needs
+                improvements
+                = 2, Unacceptable = 1 </p>
         </div>
-        <div class="container mt-3 m-auto" style="font-size:13px!important;">
+        <div class="container mt-1 m-auto" style="font-size:13px!important;">
             <table class="table table-striped border border-dark shadow-sm ">
                 <thead>
                     <tr class="table-dark">
@@ -283,28 +287,27 @@
                         </td>
                         <td class="col-md-8 text-center align-middle">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="4"
+                                <input class="form-check-input" type="radio" name="knowledge" value="4"
                                     @if ($evaluationForm->evaluationFormAnswer->Knowledge == 4) checked @endif>
                                 <label class="form-check-label">Exceeds expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="3"
+                                <input class="form-check-input" type="radio" name="knowledge" value="3"
                                     @if ($evaluationForm->evaluationFormAnswer->Knowledge == 3) checked @endif>
                                 <label class="form-check-label">Meets expectations</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="2"
+                                <input class="form-check-input" type="radio" name="knowledge" value="2"
                                     @if ($evaluationForm->evaluationFormAnswer->Knowledge == 2) checked @endif>
                                 <label class="form-check-label" for="">Needs improvements</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Knowledge" value="1"
+                                <input class="form-check-input" type="radio" name="knowledge" value="1"
                                     @if ($evaluationForm->evaluationFormAnswer->Knowledge == 1) checked @endif>
                                 <label class="form-check-label" for="">Unacceptable</label>
                             </div>
                         </td>
                     </tr>
-
                     <tr>
                         <td class="col-md-4 ">
                             <p class="fst-italic fs-7"><span class="fw-bold">Training &
@@ -421,7 +424,7 @@
                     <div class="col">Employee Signature:</div>
                     <div class="col text-center">Date:</div>
                 </div>
-                <div class="row container m-auto mt-2">
+                <div class="row container m-auto mt-2 mb-5">
                     <div class="col">Reviewer Signature:</div>
                     <div class="col text-center">Date:</div>
                 </div>

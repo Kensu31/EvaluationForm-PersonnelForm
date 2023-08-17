@@ -47,6 +47,10 @@
                                         </td>
                                         <td class="col align-middle">{{ $forms->created_at }}</td>
                                         <td class="col text-center">
+                                            <button class="btn btn-primary  px-2 text-center"
+                                                onclick="view({{ $forms->id }})">
+                                                <i class="fas fa-eye px-1"></i>
+                                            </button>
                                             <button class="btn btn-success  px-2 text-center"
                                                 onclick="confirmEdit({{ $forms->id }})">
                                                 <i class="fas fa-pencil-alt px-1"></i>
@@ -54,6 +58,9 @@
                                             <button class="btn btn-danger  px-2 text-center"
                                                 onclick="confirmDelete({{ $forms->id }})">
                                                 <i class="fas fa-trash px-1"></i>
+                                            </button>
+                                            <button class="btn btn-secondary  px-2 text-center" onclick="">
+                                                <i class="fas fa-print px-1"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -109,9 +116,6 @@
                                 window.location.href = "/personnel/form/" + selectedValue;
                             }
 
-
-
-
                             function confirmDelete($id) {
                                 return Swal.fire({
                                     title: 'Are you sure?',
@@ -128,6 +132,10 @@
 
 
                                 });
+                            }
+
+                            function view($id) {
+                                window.location.href = '/personnel-form/viewonly/' + $id
                             }
 
                             function confirmEdit($id) {

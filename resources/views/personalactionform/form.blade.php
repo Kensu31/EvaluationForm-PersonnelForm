@@ -137,9 +137,17 @@
                                 <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
                                 <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                                 <div class="col-4">
-                                    <input type="date" class="form-control underline-input px-2"
-                                        name="radioEffectiveDatePosition" id="radioEffectiveDatePosition"
-                                        value="{{ old('radioEffectiveDatePosition') }}">
+                                    <input type="date"
+                                        class="form-control underline-input px-2 @error('effectiveDatePosition')
+                                        border-danger
+                                        @else
+                                        border-dark
+                                    @enderror"
+                                        name="effectiveDatePosition" id="effectiveDatePosition"
+                                        value="{{ old('effectiveDatePosition') }}">
+                                    @error('effectiveDatePosition')
+                                        <small class="col-6 text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row g-2">
@@ -171,16 +179,14 @@
                             </div>
                             <div class="form-group other-input mt-2" id="otherUpgradePosition" style="display: none;">
                                 <input type="text" class="form-control" name="otherUpgradePosition"
-                                    placeholder="Other Reason">
+                                    value="{{ old('otherUpgradePosition') }}" placeholder="Other Reason">
                             </div>
                         </div>
                         <div class="row">
                             @error('radioUpgradePosition')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDatePosition')
-                                <small class="col-6 text-danger">{{ $message }}</small>
-                            @enderror
+
                         </div>
                         <div class="row g-2 mt-3">
                             <h6 class="col-2 fw-bold">Result:</h6>
@@ -352,9 +358,17 @@
                             <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
                             <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                             <div class="col-4">
-                                <input type="date" class="form-control underline-input px-2"
-                                    name="radioEffectiveDateSalary" id="radioEffectiveDateSalary"
-                                    value="{{ old('radioEffectiveDateSalary') }}">
+                                <input type="date"
+                                    class="form-control underline-input px-2 @error('effectiveDateSalary')
+                                    border-danger    
+                                @else
+                                border-dark
+                                @enderror"
+                                    name="effectiveDateSalary" id="effectiveDateSalary"
+                                    value="{{ old('effectiveDateSalary') }}">
+                                @error('effectiveDateSalary')
+                                    <small class="col-6 text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
                         <div class="row g-2">
@@ -391,9 +405,7 @@
                             @error('radioUpgradeSalary')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDateSalary')
-                                <small class="col-6 text-danger">{{ $message }}</small>
-                            @enderror
+
                         </div>
                         <div class="row g-2 mt-3 text-center">
                             <h6 class="col-12 fw-bold">Basic Salary</h6>
@@ -439,34 +451,43 @@
                             <h6 class="col-5 fw-bold">Reason for upgrade:</h6>
                             <h6 class="col-3 fw-bold text-end">Effective Date:</h6>
                             <div class="col-4">
-                                <input type="date" class="form-control underline-input px-2"
-                                    name="radioEffectiveDateCharges" id="radioEffectiveDateCharges"
-                                    value="{{ old('radioEffectiveDateCharges') }}">
+                                <input type="date"
+                                    class="form-control underline-input px-2 @error('effectiveDateBenefits')
+                                    border-danger
+                                    @else
+                                    border-dark
+                                @enderror"
+                                    name="effectiveDateBenefits" id="effectiveDateBenefits"
+                                    value="{{ old('effectiveDateBenefits') }}">
+
+                                @error('effectiveDateBenefits')
+                                    <small class="col-6 text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="row g-2">
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Performance Review"
-                                        {{ old('radioUpgradeCharges') == 'Performance Review' ? 'checked' : '' }}>
+                                        {{ old('radioUpgradeBenefits') == 'Performance Review' ? 'checked' : '' }}>
                                     <label class="form-check-label">Performance Review</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Promotion"
-                                        {{ old('radioUpgradeCharges') == 'Promotion' ? 'checked' : '' }}>
+                                        {{ old('radioUpgradeBenefits') == 'Promotion' ? 'checked' : '' }}>
                                     <label class="form-check-label">Promotion</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
                                         value="Lateral Transfer"
-                                        {{ old('radioUpgradeCharges') == 'Lateral Transfer' ? 'checked' : '' }}>
+                                        {{ old('radioUpgradeBenefits') == 'Lateral Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Lateral Transfer</label>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-input" type="radio" name="radioUpgradeCharges"
-                                        value="Others" {{ old('radioUpgradeCharges') == 'Others' ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" name="radioUpgradeBenefits"
+                                        value="Others" {{ old('radioUpgradeBenefits') == 'Others' ? 'checked' : '' }}>
                                     <label class="form-check-label">Others</label>
                                 </div>
                             </div>
@@ -476,12 +497,10 @@
                                 placeholder="Other Reason">
                         </div>
                         <div class="row">
-                            @error('radioUpgradeCharges')
+                            @error('radioUpgradeBenefits')
                                 <small class="col-6 text-danger">{{ $message }}</small>
                             @enderror
-                            @error('radioEffectiveDateCharges')
-                                <small class="col-6 text-danger">{{ $message }}</small>
-                            @enderror
+
                         </div>
                         <div class="row g-2 mt-3 text-center">
                             <h6 class="col-6 fw-bold">Food Allowance</h6>
@@ -759,7 +778,7 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const radioUpgradePosition = document.querySelectorAll('input[name="radioUpgradePosition"]');
-                const radioUpgradeCharges = document.querySelectorAll('input[name="radioUpgradeCharges"]');
+                const radioUpgradeBenefits = document.querySelectorAll('input[name="radioUpgradeBenefits"]');
                 const radioUpgradeSalary = document.querySelectorAll('input[name="radioUpgradeSalary"]');
 
                 const otherUpgradePosition = document.getElementById("otherUpgradePosition");
@@ -789,7 +808,7 @@
                 }
 
                 function toggleOtherInputCharges() {
-                    if (radioUpgradeCharges[3].checked) {
+                    if (radioUpgradeBenefits[3].checked) {
                         otherUpgradeCharges.style.display = "block";
                         fieldUpgradeCharges.value = '';
                     } else {
@@ -803,7 +822,7 @@
                 radioUpgradeSalary.forEach(function(radio) {
                     radio.addEventListener("change", toggleOtherInputSalary);
                 });
-                radioUpgradeCharges.forEach(function(radio) {
+                radioUpgradeBenefits.forEach(function(radio) {
                     radio.addEventListener("change", toggleOtherInputCharges);
                 });
 

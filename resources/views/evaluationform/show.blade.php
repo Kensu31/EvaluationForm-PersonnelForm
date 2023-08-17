@@ -93,6 +93,10 @@
                     <div class="col-md-10
                                     mt-2 ">
                         <h4 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h4>
+                        <p class="fw-bold" style="font-size: 12px">Legend: Exceeds expectations = 4, Meets expectations = 3,
+                            Needs
+                            improvements
+                            = 2, Unacceptable = 1 </p>
                     </div>
                     <table class="table table-striped border border-dark shadow-sm ">
                         <thead>
@@ -522,7 +526,6 @@
         document.getElementById('btncancel').addEventListener('click', function(event) {
             event.preventDefault();
             window.location.href = '/view-evaluation-form';
-
         });
     </script>
 @endsection

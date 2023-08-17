@@ -115,8 +115,11 @@
 
                     <div class="col-md-10 mt-5">
                         <h4 class="fw-bold">II. CORE VALUES AND OBJECTIVES</h4>
+                        <p class="fw-bold" style="font-size: 12px">Legend: Exceeds expectations = 4, Meets expectations = 3,
+                            Needs
+                            improvements
+                            = 2, Unacceptable = 1 </p>
                     </div>
-
                     <div class="table-responsive px-5">
                         <table class="table table-striped border border-dark ">
                             <thead>
